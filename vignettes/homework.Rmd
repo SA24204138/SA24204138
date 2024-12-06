@@ -1,0 +1,1122 @@
+---
+title: "Homework for SA24204138"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Homework for SA24204138}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# ```{r}
+# devtools::install_github("ricardo-bion/ggradar",dependencies = TRUE)
+# library(knitr)
+# library(ggplot2)
+# library(ggradar)
+# ```
+
+# ```{r}
+# ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
+# trt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
+# info <- data.frame(
+#   ctl=c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14),
+#   trt=c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
+#   )
+# info1 <- data.frame(matrix(runif(10),
+#                           nrow = 2,
+#                           dimnames=list(
+#                            rnames=c("variable1","variable2"),
+#                            cnames=c("factor","factor1","factor2","factor3","factor4")
+#                            )
+# ))
+                   
+# ```
+
+# ```{r}
+# boxplot(ctl)
+# boxplot(trt)
+# ```
+
+# ```{r}
+# ggplot(data=info,aes(x=trt,y=ctl))+geom_point(color="grey")+geom_line(color="red")
+# ```
+
+# ```{r}
+# info1[,1] <- c("variable1","variable2")
+# ggradar(plot.data =info1)
+# ```
+
+# ```{r}
+# #需要使用的R包
+# library(truncnorm)
+# library(ggplot2)
+# ```
+# 5.4
+# ```{r}
+# cdf_function<-function(u,x){
+#   cdf <- numeric(length(x))
+# for (i in 1:length(x)) {
+# cdf[i] <- mean(30*x[i]*(u * x[i])^2*(1-u * x[i])^2)
+# }
+#   return(round((cdf),3))
+# }
+
+# m<- 1e5
+# set.seed(1234)
+# u<-runif(m)
+# x <- seq(.1, .9, length = 9)
+
+# phi = pbeta(x,shape1=3,shape2=3)
+
+# y <- rbind(x,cdf_function(u,x),phi)
+# print(y)
+# ```
+
+# 5.9
+# #由于题目没有指定σ的值，故取1作为σ的值，则p.d.f为
+# $$f(x) = {x} e^{- x^2 / 2}, \quad x \geq 0$$
+# ```{r}
+# set.seed(123)
+
+# MC.Phi <- function(x, R, antithetic) {
+# u <- runif(R/2)
+# if (!antithetic) v <- runif(R/2) else
+# v <- 1 - u
+# u <- c(u, v)
+# cdf <- numeric(length(x))
+# for (i in 1:length(x)) {
+# cdf[i] <- mean(u*x[i]^2 * exp(-(u * x[i])^2 / 2))
+# }
+# cdf
+# }
+
+# x <- seq(.1, 2.5, length=5)
+# MC1 <- MC.Phi(x, R=1e4,anti = FALSE)
+# MC2 <- MC.Phi(x, R=1e4,anti = TRUE)
+
+# print(sd(MC1))
+# print(sd(MC2))
+# print((var(MC1)-var(MC2))/var(MC1))
+# ```
+
+# 5.13
+
+# ```{r}
+# #如下设置参数和所要估计的函数
+# m <- 1e5
+# theta.hat <- se <- numeric(2)
+# g <- function(x) {
+# exp(-x^2/2-log(x^2))/sqrt(2*pi)* (x > 1)
+# }
+# ```
+# #使用漂移指数分布
+# $$f(x)= e^{-(x-1)} ,\quad x\geq 1$$
+
+# ```{r}
+# m <- 1e5
+# theta.hat <- se <- numeric(2)
+# g <- function(x) {
+# exp(-x^2/2-log(x^2))/sqrt(2*pi)* (x > 1)
+# }
+# u<-runif(m)
+# x <- 1-log(1-u)
+# fg <- g(x) / exp(-(x-1))
+# theta.hat[1] <- mean(fg)
+# se[1] <- sd(fg)
+# ```
+# #使用正态分布
+# $$f(x)= \frac{1}{\sqrt(2\pi)}e^{-(x-1)^2/2}, \quad x>1$$
+# ```{r}
+# m <- 1e5
+# theta.hat2 <- se2 <- numeric(2)
+# g <- function(x) {
+# exp(-x^2/2-log(x^2))/sqrt(2*pi)* (x > 1)
+# }
+# x <- rtruncnorm(n = m, a = 1, b = Inf, mean = 1, sd = 1)
+# fg <- g(x) / dtruncnorm(x,mean=1,sd=1,a=1,b=Inf)
+# theta.hat[2] <- mean(fg)
+# se[2] <- sd(fg)
+# ```
+
+# ```{r}
+# print(rbind(theta.hat, se))
+# ```
+
+# For n = 10\^4, 2 \times 10\^4, 4 \times 10\^4, 6 \times 10\^4, 8 \times 10\^4 , apply the fast sorting algorithm to randomly permuted numbers of 1, \ldots, n . Calculate computation time averaged over 100 simulations, denoted by a_n . Regress a_n on t_n := n \log(n) , and graphically show the results (scatter plot and regression line).
+
+# ```{r}
+# #定义快速排序函数
+# quicksort <- function(arr) {
+#   if (length(arr) <= 1) {
+#     return(list(sorted = arr, steps = 0))  
+#   } else {
+#     pivot <- arr[floor(length(arr) / 2)]  
+#     left <- arr[arr < pivot]
+#     middle <- arr[arr == pivot]
+#     right <- arr[arr > pivot]
+    
+#     steps <- length(arr)
+#     left_result <- quicksort(left)
+#     right_result <- quicksort(right)
+    
+#     return(list(sorted = c(left_result$sorted, middle, right_result$sorted), 
+#                 steps = steps + left_result$steps + right_result$steps))
+#   }
+# }
+
+# n_values <- c(1e4, 2e4, 4e4, 6e4, 8e4)
+# an <- numeric(length(n_values))#令an为快速排序实验所需的步数
+# tn <- n_values*log(n_values)#tn为快速排序所需的理论步数
+
+# #进行快速排序实验
+# for (i in seq_along(n_values)) {
+#   n <- n_values[i]
+#   random_array <- sample(1:n,n)  
+#   result <- quicksort(random_array)  
+#   an[i] <- result$steps  
+# }
+
+# #作出表格和图像
+# for (i in seq_along(n_values)) {
+#   cat(sprintf("Size: %d, Steps: %d\n", n_values[i], an[i]))
+# }
+
+# table<-data.frame(tn,an)
+# ggplot(table, aes(x = tn, y = an)) +
+#   geom_point() +  # 绘制散点图
+#   geom_smooth(method = "lm", se = FALSE) +  # 添加回归线
+#   labs(x = "n log(n)", y = "Computation Time") +
+#   theme_minimal()
+# ```
+
+# 6.6
+# ```{r}
+# #m为试验次数
+# Quantile_skewness_values <- function(data,quantiles){
+#    sqrt.b1<-numeric(m)
+#    e<-numeric(length(quantiles))
+#    for (i in 1:m) {
+#     x <- mean(data[i,])
+#     y <- sd(data[i,])
+#     sqrt.b1[i] <- mean((data[i,] - x)^3) / y^3
+#    }
+#    e <- quantile(sqrt.b1, probs = quantiles)
+#    print(quantiles)
+#    print(e)
+# }
+
+# normal_quantiles_values<- function(n,quantiles){
+#   t<-qnorm(quantiles, mean = 0, sd = sqrt(6/m))
+#   print(t)
+# }
+
+# standard_errors <- function(quantiles,x_values,m) {
+#     se <- sqrt((quantiles*(1-quantiles)) / (m * x_values^2)) 
+#     print(se)
+# }
+
+# set.seed(123)
+# n<-10000
+# m<-10000
+# quantiles <- c(0.025, 0.05, 0.95, 0.975)
+# x_values <- qnorm(quantiles)
+
+# data<- matrix(rnorm(m * n), nrow = m, ncol = n)
+
+# Quantile_skewness_values(data,quantiles)
+# normal_quantiles_values(n,quantiles)
+# standard_errors(quantiles,x_values,m)
+# ```
+# 6.B
+# ```{r}
+# # 加载必要的库并设置随机种子  
+# set.seed(1234)  
+# empirical_power <- function(n, m, alpha, r = 0.5) {  
+#   # 生成双变量非正态分布数据并执行相关性检验的函数  
+#   simulate_and_test <- function(n, r, alpha) {  
+#     # 生成X（正态分布）  
+#     X <- rnorm(n)  
+#     # 生成Y（非正态分布，与X有相关性）  
+#     Y <- -1/500 * X^3 + 3 * rgamma(n, shape = 3, rate = 2)  
+      
+#     # 执行相关性检验  
+#     pearson_test <- cor.test(X, Y, method = "pearson")  
+#     spearman_test <- cor.test(X, Y, method = "spearman")  
+#     kendall_test <- cor.test(X, Y, method = "kendall")  
+      
+#     # 返回检验的p值是否小于显著性水平（即是否拒绝原假设）  
+#     return(c(  
+#       pearson = pearson_test$p.value < alpha,  
+#       spearman = spearman_test$p.value < alpha,  
+#       kendall = kendall_test$p.value < alpha  
+#     ))  
+#   }  
+    
+#   # 初始化拒绝次数计数器  
+#   rejection_counts <- numeric(3)  
+#   names(rejection_counts) <- c("pearson", "spearman", "kendall")  
+    
+#   # 执行模拟  
+#   for (i in 1:m) {  
+#     rejection_counts <- rejection_counts + simulate_and_test(n, r, alpha)  
+#   }  
+    
+#   # 计算并返回实证功效  
+#   empirical_power <- rejection_counts / m  
+#   return(empirical_power)  
+# }  
+  
+
+# n <- 1e3
+# m <- 1e3
+# alpha <- 0.05  
+  
+# empirical_power_results <- empirical_power(n, m, alpha)  
+# cat("Empirical Power (Pearson - Non-Normal):", empirical_power_results["pearson"], "\n")  
+# cat("Empirical Power (Spearman - Non-Normal):", empirical_power_results["spearman"], "\n")  
+# cat("Empirical Power (Kendall - Non-Normal):", empirical_power_results["kendall"], "\n")
+# ```
+# ##补充问题：
+# 我们在两个不同的方法下进行了 10,000 次实验，得到了两个统计量（功效值）：一个为 0.651，另一个为 0.676。现在我们希望在显著性水平为 0.05 时，检验这两个功效值是否有显著差异。
+
+# #对应的假设检验问题是什么？
+
+# 这是一个关于两个独立方法功效比较的假设检验问题。具体来说：
+# 零假设（H0)：假设两种方法具有相同的功效，即 p1=p2 
+# 备择假设（H1）：假设两种方法具有不同的功效，即 p1与p2不相等
+#  。
+# #我们应该使用哪种检验？Z检验、两样本t检验、配对t检验还是McNemar检验？为什么？
+
+# 我们应该使用McNemar检验，因为：
+# 1.此时由于两个方法所使用的为同一个样本，所以排除两样本t检验和z检验。
+# 2.此时可以使用配对t检验，但是此时最优的做法是使用McNemar检验，因为：
+#   a.McNemar检验特别适用于二分类数据
+#   b.当研究目标是评估两种处理方法或诊断方式在同一组受试者中的效果是
+#    否存在显著差异时，McNemar检验是一个合适的选择。它可以帮助我们确
+#    定两种处理方法是否导致受试者分类结果的一致性或不一致性。
+
+# #下面是使用McNemar的代码：
+# ```{r}
+# set.seed(123)  # 设置随机种子以便重现结果  
+# method_a_power <- rnorm(10000, mean = 0.651, sd = 0.1)  # 假设方法A的功效值服从正态分布  
+# method_b_power <- rnorm(10000, mean = 0.676, sd = 0.1)  # 假设方法B的功效值服从正态分布  
+  
+# # 选择一个阈值  
+# threshold <- 0.5  
+  
+# # 将功效值转化为二分类结果  
+# method_a_binary <- ifelse(method_a_power > threshold, 1, 0)  
+# method_b_binary <- ifelse(method_b_power > threshold, 1, 0)  
+  
+# # 构建2x2列联表  
+# table_data <- table(MethodA = method_a_binary, MethodB = method_b_binary)  
+  
+# # 打印列联表  
+# print(table_data)  
+  
+# # 应用McNemar检验（注意：这不是标准做法，仅供演示）  
+# mcnemar_result <- mcnemar.test(table_data)  
+# print(mcnemar_result)
+# ```
+
+# ```{r}
+# set.seed(123)
+# n <- 1e3
+# null_proportion <- 0.95  
+# alt_proportion <- 0.05  
+# alpha <- 0.1
+# m <- 1e4
+
+# FWER <- function(rejected, false_positives) {
+#   mean(false_positives > 0)
+# }
+# FDR <- function(rejected, false_positives) {
+#   if (rejected == 0) return(0)
+#   mean(false_positives / rejected)
+# }
+
+# TPR <- function(rejected, true_positives) {
+#   if (rejected == 0) return(0)
+#   mean(true_positives / 50) 
+# }
+
+# results <- replicate(m, {
+#   p_values <- c(runif(950), rbeta(50, 0.1, 1))
+#   p1 <- p.adjust(p_values, method = "bonferroni")
+#   t1 <- sum(p1 < alpha)
+#   w1 <- sum(p1[1:950] < alpha)
+#   #bonferroni_true_positives <- sum(p1[951:1000] < alpha)
+#   p2 <- p.adjust(p_values, method = "BH")
+#   t2 <- sum(p2 < alpha)
+#   w2 <- sum(p2[1:950] < alpha)
+#   #bh_true_positives <- sum(p2[951:1000] < alpha)
+  
+# c(
+#   FWER(t1, w1),
+#   FDR(t1, w1),
+#   TPR(t1, w1),
+
+#   FWER(t2, w2),
+#   FDR(t2, w2),
+#   TPR(t2, w2)
+#   )
+# })
+# results_mean <- colMeans(results)
+# FWER_Bonf <- results_mean[1]
+# FDR_Bonf <- results_mean[2]
+# TPR_Bonf <- results_mean[3]
+
+# FWER_BH <- results_mean[4]
+# FDR_BH <- results_mean[5]
+# TPR_BH <- results_mean[6]
+
+# output_table <- data.frame(
+#   Metric = c("FWER", "FDR", "TPR"),
+#   Bonferroni = c(FWER_Bonf, FDR_Bonf, TPR_Bonf),
+#   BH = c(FWER_BH, FDR_BH, TPR_BH)
+# )
+
+# print(output_table)
+# ```
+
+# #7.4
+# 指数分布参数$$\lambda$$的MLE估计量为$$\frac{n}{\sum_{i=1}^{n} x_i} $$.
+# 产生差异的原因是因为每次取样都是可放回的随机抽样，所以用boostrap的方法来估计会
+# 在原数据生成的估计的附近波动，同时随着试验次数的增多，boostrap产生的估计值会接近
+# 原始的估计值.
+# ```{r}
+# set.seed(123)
+# data<-c(3, 5, 7, 18, 43, 85, 91, 98, 100, 130, 230, 487)
+# lambda<- mean(data)
+
+# B <- 1e3
+# n <- length(data) 
+# R <- numeric(B)
+# sample0 <- numeric(n)
+# boostrap_lambda<-numeric(B)
+# for (b in 1:B) {
+#   for (i in 1:n){
+#      i <- sample(1:n, size = 1,replace = TRUE)
+#      sample0[i] <- data[i]
+#   }
+#   boostrap_lambda[b] <- 1/mean(sample0)
+# }
+
+# lambda<- 1/mean(data)
+# bias <- lambda - mean(boostrap_lambda)
+# stand_error <- sd(boostrap_lambda)
+
+# cat("estimated lambda:\n", lambda,"\n")
+# cat("bias:\n", bias,"\n")
+# cat("stand error:\n", stand_error)
+# ```
+
+# #7.5
+# ```{r}
+# library(boot)
+# data <- c(3, 5, 7, 18, 43, 85, 91, 98, 100, 130, 230, 487)
+
+# lambda_mle_bootstrap <- function(data, i) {
+#   sample1 <- data[i]
+#   return(1 / mean(sample1))    
+# }
+
+# bootstrap_results <- boot(data, statistic = lambda_mle_bootstrap, R = 1e3)
+
+# ci_norm <- boot.ci(bootstrap_results, type = "norm")
+# ci_basic <- boot.ci(bootstrap_results, type = "basic")
+# ci_perc <- boot.ci(bootstrap_results, type = "perc")
+# ci_bca <- boot.ci(bootstrap_results, type = "bca")
+
+# cat("Standard Normal Method CI:\n", ci_norm$normal, "\n")
+# cat("Basic Method CI:\n", ci_basic$basic, "\n")
+# cat("Percentile Method CI:\n", ci_perc$percent, "\n")
+# cat("BCa Method CI:\n", ci_bca$bca, "\n")
+# ```
+
+# 7.8
+# ```{r}
+# library(bootstrap)
+# data <- scor
+# n<-nrow(data)
+# val<-numeric(n)
+# theta.jack<-numeric(5)
+# theta<- function(data){
+#   svd_result <- svd(data)
+#   val = svd_result$d
+#   val_sorted <- sort(val, decreasing = TRUE)
+#   return(val_sorted[1]/sum(val))
+# }
+
+# for(i in 1:n){
+#   theta.jack[i] <- theta(data[-i])
+# }
+
+# theta.hat<-theta(data)
+# bias.jack <- (n-1)*(mean(theta.jack)-theta.hat)
+# sd_error<- sd(theta.jack)
+
+# cat("theta",theta.hat,"\n")
+# cat("bias",bias.jack,"\n")
+# cat("stand error",sd_error)
+# ```
+# 7.10
+# ```{r}
+# library(DAAG)
+# X <- ironslag$chemical
+# Y <- ironslag$magnetic
+# n <- length(Y)
+# linear_model <- function(X, Y) { lm(Y ~ X) }
+# quadratic_model <- function(X, Y) { lm(Y ~ poly(X, 2)) }
+# cubic_model <- function(X, Y) { lm(Y ~ poly(X, 3)) }
+# exponential_model <- function(X, Y) { lm(log(Y) ~ X) }
+
+# cv_error <- function(model) {
+#   errors <- numeric(n)
+#   for (i in 1:n) {
+#     t <- model(X[-i], Y[-i])
+#     prediction <- predict(t, newdata = data.frame(X = X[i]))
+#     errors[i] <- (Y[i] - prediction)^2
+#   }
+#   return(mean(errors))
+# }
+
+# expo_cv <- function(model) {
+#   errors <- numeric(n)
+#   for (i in 1:n) {
+#     t <- model(X[-i], Y[-i])
+#     prediction <- predict(t, newdata = data.frame(X = X[i]))
+#     errors[i] <- (Y[i] - exp(prediction))^2
+#   }
+#   return(mean(errors))
+# }
+
+# linear_cv <- cv_error(linear_model)
+# quadratic_cv <- cv_error(quadratic_model)
+# cubic_cv <- cv_error(cubic_model)
+# exponential_cv <- expo_cv(exponential_model)
+# cat("Linear CV Error:", linear_cv,"\n")
+# cat("Quadratic CV Error", quadratic_cv,"\n")
+# cat("Cubic CV Error", cubic_cv,"\n")
+# cat("Expoential CV Error", exponential_cv,"\n\n")
+
+# adj_r2 <- function(model) {
+#   return(summary(model)$adj.r.squared)
+# }
+
+# linear_r2 <- adj_r2(lm(Y ~ X))
+# quadratic_r2 <- adj_r2(lm(Y ~ poly(X, 2)))
+# cubic_r2 <- adj_r2(lm(Y ~ poly(X, 3)))
+# exponential_r2 <- adj_r2(lm(log(Y) ~ X))
+
+# cat("Linear Adjusted R^2", linear_r2,"\n")
+# cat("Quadratic Adjusted R^2", quadratic_r2,"\n")
+# cat("Cubic Adjusted R^2",cubic_r2,"\n")
+# cat("Expoentical Adjusted R^2",exponential_r2,"\n")
+# #根据例题7.18的方法应该选择Qudratic的方法，而根据adjusted R^2应该选择Expoential
+# #的方法
+
+# ```
+
+# 8.1
+# ```{r}
+# set.seed(123)
+# library(cramer)
+
+# attach(chickwts)
+# x <- sort(as.vector(weight[feed == "soybean"]))
+# y <- sort(as.vector(weight[feed == "linseed"]))
+# detach(chickwts)
+
+# cramer_von_mises<- cramer.test(x, y)$statistic
+
+# permutation_test <- function(x, y) {
+#   data <- c(x,y)
+#   m <- length(x)
+#   perm_stats <- numeric(1e3)
+  
+#   for (i in 1:1e3) {
+#     data1 <- sample(data,size=length(data),replace = FALSE)
+#     t <- data1[1:m]
+#     w <- data1[(m + 1):length(data)]
+#     perm_stats[i] <- cramer.test(t, w)$statistic
+#   }
+#   p_value <- mean(perm_stats >= cramer_von_mises)
+#   return(p_value)
+# }
+
+# p_value <- permutation_test(x, y)
+
+# # 输出结果
+# cat("Cramér-von Mises Test Statistic:", cramer_von_mises, "\n")
+# cat("Permutation Test P-value:", p_value, "\n")
+
+# ```
+
+# 8.2
+# ```{r}
+# #由于题目没有给出参数，故需要生成数据
+# set.seed(123)  
+# x <- rnorm(100)   
+# y <- 0.5 * x + rnorm(100) 
+  
+# cor0 <- cor(x, y, method = "spearman")  
+  
+# R <- 1e4 
+# t <- numeric(R)  
+ 
+# for (i in 1:R) {  
+#   w <- sample(y,size=length(y),replace=FALSE)  
+#   # 计算打乱后的Spearman秩相关系数  
+#   t[i] <- cor(x, w, method = "spearman")  
+# }  
+  
+# p_value <- mean(t >= cor0)  
+
+# cat("Original Spearman correlation:", cor0, "\n")  
+# cat("Permutation test p-value:", p_value, "\n")
+# ```
+
+# 9.3
+# ```{r}
+# library("coda")
+# f <- function(x) {
+#   1 / (pi * (1 + x^2))
+# }
+
+# mh <- function(n, s, d) {
+#   x <- numeric(n)
+#   x[1] <- s
+  
+#   for (i in 2:n) {
+#     p <- x[i - 1] + rt(1, df = d)
+#     a <- f(p) / f(x[i - 1])
+    
+#     x[i] <- ifelse(runif(1) < a, p, x[i - 1])
+#   }
+  
+#   x
+# }
+
+# set.seed(123)
+# n <- 1e5  
+# s <- 0    
+# d <- 1    
+# m <- 3    
+# b <- 1000 
+
+# c <- mcmc.list(lapply(1:m, function(i) as.mcmc(mh(n, s, d))))
+
+# g <- gelman.diag(c)
+# print(g)
+# cat(if (all(g$psrf < 1.2)) {
+#   "Chains have approximately converged (R_hat < 1.2).\n"
+# } else {
+#   "Chains have not yet converged.\n"
+# })
+
+# q <- unlist(lapply(c, function(ch) ch[-(1:b)]))
+# sq <- quantile(q, probs = seq(0.1, 0.9, by = 0.1))
+# tq <- qcauchy(seq(0.1, 0.9, by = 0.1))
+
+# # 创建比较数据框并打印
+# cmp <- data.frame(
+#   D = seq(0.1, 0.9, by = 0.1),
+#   SQ = sq,
+#   TQ = tq
+# )
+# print(cmp)
+
+# plot(sq, tq, main = "Sample vs Theoretical Quantile",
+#      xlab = "Sample Quantile", ylab = "Theoretical Quantile", pch = 19)
+# abline(0, 1, col = "blue")
+# ```
+# 9.8
+# ```{r}
+# library(coda)
+# a <- 2
+# b <- 2
+# n <- 10
+# u <- 1e5  # 样本数量
+# v <- 3      # 链的数量
+
+# generate_chain <- function(u, n, a, b) {
+#   x <- 0
+#   y <- 0.5
+#   t <- matrix(0, nrow = u, ncol = 2) 
+  
+#   for (i in 1:u) {
+#     x <- rbinom(1, n, y)
+#     y <- rbeta(1, x + a, n - x + b)
+#     t[i, ] <- c(x, y) 
+#   }
+  
+#   as.mcmc(t)
+# }
+
+# chains <- lapply(1:v, function(i) generate_chain(u, n, a, b))
+# gelman_diag <- gelman.diag(mcmc.list(chains))
+# print(gelman_diag)
+
+# cat(if (all(gelman_diag$psrf < 1.2)) {
+#   "Chains have approximately converged.\n"
+# } else {
+#   "Chains have not yet converged.\n"
+# })
+# ```
+
+# #11.3
+# ```{r}
+# #1.
+# library(pracma) 
+
+# f <- function(a, d, k) {
+#   norm_a <- sqrt(sum(a^2))
+  
+#   log_term_k <- (-1)^k - lgamma(k + 1) - k * log(2) +
+#     (2 * k + 2) * log(norm_a) - log(2 * k + 1) - log(2 * k + 2) +
+#     lgamma((d + 1) / 2) + lgamma(k + 3 / 2) - lgamma(k + d / 2 + 1)
+
+#   term_k <- exp(log_term_k)
+  
+#   return(term_k)
+# }
+
+# #2
+
+# g <- function(a,d,t){
+#   s <- 0
+#   for(k in 0:t){
+#     s<- s+f(a,d,k)
+#   }
+#   return(s)
+# }
+
+# #3
+# a <- c(1, 2)
+# d <- 2
+# t <- 1e3
+# term_t <- g(a, d, t)
+# cat("前", t, "项的和为:", term_t, "\n")
+
+# ```
+
+# #11.5
+# ```{r}
+# library(pracma)
+
+# h <- function(u, k) {
+#   (1 + u^2 / (k - 1))^(-k/ 2)
+# }
+
+# g <- function(k, a) {
+#   sqrt(a^2 * k / (k + 1 - a^2))
+# }
+
+# j <- function(k, a) {
+#   c <- g(k - 1, a)
+#   2 / sqrt(pi * (k - 1)) * exp(lgamma(k / 2) - lgamma((k - 1) / 2)) * 
+#     integrate(function(u) h(u, k), lower = 0, upper = c)$value
+# }
+
+# f <- function(a, k) {
+#   l <- j(k, a)
+#   r <- j(k + 1, a)
+#   l - r
+# }
+
+# # 定义主函数 s，用于求解方程
+# s <- function(k, e) {
+#   if ((f(0.1, k) < 0 && f(sqrt(k/3-e) , k) > 0) || (f(0.1, k) > 0 && f(sqrt(k/3-e) , k) < 0)) {
+#     root <- uniroot(function(a) f(a, k), interval = c(e, sqrt(k/3) - e),tol=e)$root
+#   } else {
+#     root <- NA
+#   }
+#   return(root)
+# }
+
+# k <- 18
+# e <- 1e-2
+# x <- seq(e, sqrt(k) - e, 0.01)
+# print(s(k, e))
+# plot(x, sapply(x, function(a) f(a, k)), type = "l", main = paste("f(a) for k =", k),
+#      xlab = "a", ylab = "f(a)")
+
+# ```
+# #补充
+# ```{r}
+# t <- 1  
+# data <- c(0.54, 0.48, 0.33, 0.43, 1.00, 0.91, 1.00, 0.21, 0.85)  
+# n <- length(data)  
+# lambda <- 1  
+# eps <- 1e-6  
+# m <- 1e3
+
+# is_censored <- data == t
+
+# for (k in 1:m) {
+#   expected_values <- ifelse(is_censored, t + 1 / lambda, data)
+#   new_lambda <- n / sum(expected_values)
+  
+#   if (abs(new_lambda - lambda) < eps) {
+#     cat("收敛于迭代", k, "次\n")
+#     break
+#   }
+
+#   lambda <- new_lambda
+# }
+
+# cat("估计的 lambda:", lambda, "\n")
+# mle_lambda <- n / sum(data)
+# cat("观测数据的 MLE 估计的 lambda:", mle_lambda, "\n")
+
+# ```
+
+# 11.7
+# ```{r}
+# library(boot)
+# A1 <- rbind(c(2,1,1),c(1,-1,3))
+# b1 <- c(2,3)
+# a <- c(4,2,9)
+# simplex(a = a, A1 = A1, b1 = b1,maxi = TRUE )
+# ```
+
+# P.204
+# 3.Use both for loops and lapply() to fit linear models to the
+# mtcars using the formulas stored in this list:
+# ```{R}
+# formulas <- list(
+#   mpg ~ disp,
+#   mpg ~ I(1 / disp),
+#   mpg ~ disp + wt,
+#   mpg ~ I(1 / disp) + wt
+# )
+
+# model_for1 <- vector("list",length = 4)
+# for (i in seq_along(formulas)) {
+#   model_for1[[i]] <- lm(formulas[[i]], data = mtcars) 
+# }
+
+# model_lapply1 <- lapply(formulas, lm ,data = mtcars)
+# ```
+
+# 4.Fit the model mpg ~ disp to each of the bootstrap replicates
+# of mtcars in the list below by using a for loop and lapply().
+# Can you do it without an anonymous function?
+# ```{r}
+# bootstraps <- lapply(1:10, function(i) {
+#   rows <- sample(1:nrow(mtcars), rep = TRUE)
+#   mtcars[rows, ]
+# })
+
+# model_for2 <- list()
+# for (i in seq_along(bootstraps)) {
+#   model_for2[[i]] <- lm(mpg ~ disp, data = bootstraps[[i]])
+# }
+# model_lapply2 <- lapply(bootstraps, lm, formula = mpg ~ disp)
+
+# ```
+
+# 5.For each model in the previous two exercises, extract R2 using
+# the function below.
+# ```{r}
+# rsq <- function(mod) summary(mod)$r.squared
+
+# rsquare_for1 <- lapply(model_for1, function(model_for1) rsq(model_for1))
+# rsquare_lapply1 <- lapply(model_lapply1, function(model_lapply1) rsq(model_lapply1))
+# rsquare_for2 <- lapply(model_for2, function(model_for2) rsq(model_for2))
+# rsquare_lapply2 <- lapply(model_lapply2, function(model_lapply2) rsq(model_lapply2))
+# ```
+
+# P213-214
+# 3.
+# ```{r}
+# trials <- replicate(
+# 100,
+# t.test(rpois(10, 10), rpois(7, 10)),
+# simplify = FALSE
+# )
+
+# p_value <- sapply(trials, function(x) x$p.value)
+# print(p_value)
+# ```
+# 6.
+# ```{r}
+# #x为输入的list
+# map_vapply <- function(f, x, FUN.VALUE = NULL) {
+#   # 使用 Map 对 x 应用函数 f
+#   t <- Map(f, x)
+  
+#   # 如果 FUN.VALUE 未定义，则动态推断
+#   if (is.null(FUN.VALUE)) {
+#     test_result <- t[[1]]
+#     if (is.numeric(test_result)) {
+#       FUN.VALUE <- numeric(length(test_result))
+#     } else if (is.character(test_result)) {
+#       FUN.VALUE <- character(length(test_result))
+#     } else if (is.logical(test_result)) {
+#       FUN.VALUE <- logical(length(test_result))
+#     } else {
+#       stop("Unsupported return type. Please specify FUN.VALUE explicitly.")
+#     }
+#   }
+  
+#   vapply(seq_along(t), function(i) t[[i]], FUN.VALUE)
+# }
+
+# lst <- list(matrix(1:4, 2, 2), matrix(5:8, 2, 2))
+# result <- map_vapply(function(y) t(y), lst)
+# print(result)
+# ```
+# 4.Make a faster version of chisq.test() that only computes the
+# chi-square test statistic when the input is two numeric vectors
+# with no missing values. You can try simplifying chisq.test()
+# or by coding from the mathematical definition (http://en.
+# wikipedia.org/wiki/Pearson%27s_chi-squared_test).
+# ```{r}
+# fast_chisq_test <- function(x, y) {
+#   obs <- table(x, y)
+#   x <- rowSums(obs)
+#   y <- colSums(obs)
+#   u <- sum(obs)
+#   v <- outer(x, y) / u
+#   chisq_stat <- sum((obs - v)^2 / v)
+#   return(chisq_stat)
+# }
+# x <- c(1, 2, 5, 7, 11, 13, 17, 19, 23)
+# y <- c(1, 2, 3, 4, 5, 6, 7, 8, 9)
+
+# #测试
+# chisq_stat <- fast_chisq_test(x, y)
+# print(chisq_stat)
+# ```
+
+# 5.Can you make a faster version of table() for the case of an
+# 366 Advanced R
+# input of two integer vectors with no missing values? Can you
+# use it to speed up your chi-square test?
+
+# ```{r}
+# f <- function(x, y) {
+#   u <- unique(x)
+#   v <- unique(y)
+#   freq <- matrix(0, nrow = length(u), ncol = length(v),
+#                        dimnames = list(u, v))
+  
+#   for (i in seq_along(x)) {
+#     freq[as.character(x[i]), as.character(y[i])] <- 
+#       freq[as.character(x[i]), as.character(y[i])] + 1
+#   }
+  
+#   return(freq)
+# }
+
+# # 测试
+# x <- c(1, 2, 3, 4, 5, 6, 7)
+# y <- c(1, 2, 1, 2, 1, 2, 2)
+# result <- f(x, y)
+# print(result)
+
+# ```
+
+# ```{r}
+# library(Rcpp)
+# library(microbenchmark)
+# library(ggplot2)
+
+# #set.seed(123)
+# #sourceCpp("gibbsSamplerCpp.cpp")
+# #gibbsSamplerR <- function(i, N, a, b, x0, y0) {
+# #  x_samples <- integer(i)  
+# #  y_samples <- numeric(i)  
+  
+# #  x <- x0  
+# #  y <- y0  
+  
+# #  for (j in 1:i) {
+# #    x <- rbinom(1, N, y)                 
+# #    y <- rbeta(1, x + a, N - x + b)       
+# #    x_samples[j] <- x
+# #    y_samples[j] <- y
+# #  }
+  
+# #  list(x = x_samples, y = y_samples)  
+# #}
+
+# #i <- 1e4 
+# #N <- 10     
+# #a <- 3       
+# #b <- 4       
+# #x0 <- 5      
+# #y0 <- 1    
+
+# #samples_R <- gibbsSamplerR(i, N, a, b, x0, y0)
+# #samples_Rcpp <- gibbsSamplerCpp(i, N, a, b, x0, y0)
+
+# #x_R <- samples_R$x
+# #y_R <- samples_R$y
+# #x_Rcpp <- samples_Rcpp$x
+# #y_Rcpp <- samples_Rcpp$y
+
+# #par(mfrow = c(1, 2))
+# #qqplot(x_R, x_Rcpp, 
+# #       main = "QQ Plot of x (R vs Rcpp)", 
+# #       xlab = "R Samples", ylab = "Rcpp Samples")
+# #abline(0, 1, col = "red")
+
+# #qqplot(y_R, y_Rcpp, 
+# #       main = "QQ Plot of y (R vs Rcpp)", 
+# #       xlab = "R Samples", ylab = "Rcpp Samples")
+# #abline(0, 1, col = "red")
+
+# #i_b <- 5000  
+# #benchmark_results <- microbenchmark(
+# #  R = gibbsSamplerR(i_b, N, a, b, x0, y0),
+# #  Rcpp = gibbsSamplerCpp(i_b, N, a, b, x0, y0),
+# #  times = 10
+# #)
+
+# #print(benchmark_results)
+# #autoplot(benchmark_results)
+
+# ```
+
+# #include <Rcpp.h>
+# #using namespace Rcpp;
+
+# #// [[Rcpp::export]]
+# #List gibbsSamplerCpp(int n_iter, int n, double a, double b, int x_init, double y_init) {
+# #  // 初始化采样存储向量
+# #  IntegerVector x_samples(n_iter);
+# #  NumericVector y_samples(n_iter);
+  
+# #  // 初始化x和y
+# #  int x = x_init;
+# #  double y = y_init;
+  
+# #  // 采样循环
+# #  for (int i = 0; i < n_iter; ++i) {
+# #    // 从条件分布 x | y ~ Binomial(n, y) 采样
+# #    x = R::rbinom(n, y);
+    
+# #    // 从条件分布 y | x ~ Beta(x + a, n - x + b) 采样
+# #    y = R::rbeta(x + a, n - x + b);
+    
+# #    // 存储当前采样
+# #    x_samples[i] = x;
+# #    y_samples[i] = y;
+# #  }
+  
+# #  // 返回结果
+# #  return List::create(Named("x") = x_samples, Named("y") = y_samples);
+# #}
+
+#final project
+#include <RcppArmadillo.h>
+#// [[Rcpp::depends(RcppArmadillo)]]
+#using namespace Rcpp;
+
+#// Soft-thresholding function
+#double soft_threshold(double x, double lambda) {
+#  if (x > lambda) return x - lambda;
+#  if (x < -lambda) return x + lambda;
+#  return 0.0;
+#}
+
+#// Optimize principal component vector
+#arma::vec optimize_beta(const arma::mat& Sigma_hat, arma::vec beta, double lambda, double T, int #max_iter = 100, double tol = 1e-6) {
+#  int p = Sigma_hat.n_cols;
+#  arma::vec beta_old = beta;
+  
+#  for (int iter = 0; iter < max_iter; ++iter) {
+#    for (int j = 0; j < p; ++j) {
+#      double partial_residual = -arma::dot(Sigma_hat.row(j).t(), beta) + Sigma_hat(j, j) * beta(j);
+#      beta(j) = soft_threshold(partial_residual, lambda) / Sigma_hat(j, j);
+#    }
+#    // Enforce L1 norm constraint
+#    if (arma::norm(beta, 1) > T) {
+#      beta *= T / arma::norm(beta, 1);
+#    }
+#    // Convergence check
+#    if (arma::norm(beta - beta_old, 2) < tol) break;
+#    beta_old = beta;
+#  }
+#  return beta;
+#}
+
+#// Nodewise Lasso function
+#arma::mat nodewise_lasso(const arma::mat& A, double lambda, double T) {
+#  int p = A.n_cols;
+#  arma::mat Theta = arma::zeros<arma::mat>(p, p);
+  
+#  for (int j = 0; j < p; ++j) {
+#    arma::vec gamma = arma::zeros<arma::vec>(p - 1);
+#    arma::vec Aj = A.col(j);
+#    arma::mat A_minus_j = A;
+#    A_minus_j.shed_col(j);
+    
+#    double error_tolerance = 1e-6;
+#    arma::vec gamma_old = gamma;
+#    double error = 1.0;
+#    int max_iter = 1000;
+#    int iter = 0;
+    
+#    while (error > error_tolerance && iter < max_iter) {
+#      for (int k = 0; k < gamma.n_elem; ++k) {
+#        double partial_residual = Aj(k) - arma::dot(A_minus_j.row(k).t(), gamma);
+#        gamma(k) = soft_threshold(partial_residual, lambda) / (A_minus_j(k, k) + 1e-10);
+#      }
+#      error = arma::norm(gamma - gamma_old, 2);
+#      gamma_old = gamma;
+#      iter++;
+#    }
+#    Theta.col(j) = -arma::join_cols(gamma.head(j), arma::vec(1, arma::fill::zeros), gamma.tail(p - j - #1));
+#  }
+#  return Theta;
+#}
+
+#// Debiased sparse PCA function
+#List debiased_sparse_pca(const arma::mat& Sigma_hat, const arma::vec& beta_hat, double lambda, double #T, const arma::mat& Theta) {
+#  double beta_hat_norm_sq = arma::dot(beta_hat, beta_hat);
+#  arma::vec bias_correction = Theta * (beta_hat_norm_sq * beta_hat - Sigma_hat * beta_hat);
+#  arma::vec beta_debiased = beta_hat - bias_correction;
+  
+#  double eigenvalue = arma::dot(beta_hat, Sigma_hat * beta_hat);
+  
+#  return List::create(
+#    Named("beta_debiased") = beta_debiased,
+#    Named("eigenvalue") = eigenvalue
+#  );
+#}
+
+#// Alternating optimization main function
+#// [[Rcpp::export]]
+# List alternating_debiased_sparse_pca(const arma::mat& X, arma::vec beta_hat, double lambda, double T, # # int max_iter = 100, double tol = 1e-6) {
+#  if (X.n_rows < X.n_cols) {
+#    stop("Input matrix X should have more rows than columns.");
+#  }
+  
+#  int p = X.n_cols;
+#  arma::mat Sigma_hat = X.t() * X / X.n_rows;
+#  beta_hat = optimize_beta(Sigma_hat, beta_hat, lambda, T);
+#  arma::mat Theta;
+#  arma::vec beta_debiased;
+#  double eigenvalue;
+  
+#  for (int iter = 0; iter < max_iter; ++iter) {
+#    arma::mat Rn_beta = -Sigma_hat + arma::eye<arma::mat>(p, p) * arma::dot(beta_hat, beta_hat) + 2 * #    beta_hat * beta_hat.t();
+#    Theta = nodewise_lasso(Rn_beta, lambda, T);
+    
+#    List pca_result = debiased_sparse_pca(Sigma_hat, beta_hat, lambda, T, Theta);
+#    beta_debiased = as<arma::vec>(pca_result["beta_debiased"]);
+#    eigenvalue = as<double>(pca_result["eigenvalue"]);
+    
+#    if (arma::norm(beta_debiased - beta_hat, 2) < tol) break;
+#    beta_hat = beta_debiased;
+#  }
+  
+#  return List::create(
+#    Named("beta_debiased") = beta_debiased,
+#    Named("eigenvalue") = eigenvalue,
+#    Named("Theta") = Theta
+#  );
+#}

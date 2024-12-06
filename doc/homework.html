@@ -1,0 +1,2576 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Homework for SA24204138</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Homework for SA24204138</h1>
+
+
+
+<div id="r-devtoolsinstall_githubricardo-bionggradardependencies-true-libraryknitr-libraryggplot2-libraryggradar" class="section level1">
+<h1><code>{r} # devtools::install_github(&quot;ricardo-bion/ggradar&quot;,dependencies = TRUE) # library(knitr) # library(ggplot2) # library(ggradar) #</code></h1>
+</div>
+<div id="r" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="ctl---c4.175.585.186.114.504.615.174.535.335.14" class="section level1">
+<h1>ctl &lt;- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)</h1>
+</div>
+<div id="trt---c4.814.174.413.595.873.836.034.894.324.69" class="section level1">
+<h1>trt &lt;- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)</h1>
+</div>
+<div id="info---data.frame" class="section level1">
+<h1>info &lt;- data.frame(</h1>
+</div>
+<div id="ctlc4.175.585.186.114.504.615.174.535.335.14" class="section level1">
+<h1>ctl=c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14),</h1>
+</div>
+<div id="trtc4.814.174.413.595.873.836.034.894.324.69" class="section level1">
+<h1>trt=c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)</h1>
+</div>
+<div id="section" class="section level1">
+<h1>)</h1>
+</div>
+<div id="info1---data.framematrixrunif10" class="section level1">
+<h1>info1 &lt;- data.frame(matrix(runif(10),</h1>
+</div>
+<div id="nrow-2" class="section level1">
+<h1>nrow = 2,</h1>
+</div>
+<div id="dimnameslist" class="section level1">
+<h1>dimnames=list(</h1>
+</div>
+<div id="rnamescvariable1variable2" class="section level1">
+<h1>rnames=c(“variable1”,“variable2”),</h1>
+</div>
+<div id="cnamescfactorfactor1factor2factor3factor4" class="section level1">
+<h1>cnames=c(“factor”,“factor1”,“factor2”,“factor3”,“factor4”)</h1>
+</div>
+<div id="section-1" class="section level1">
+<h1>)</h1>
+</div>
+<div id="section-2" class="section level1">
+<h1>))</h1>
+</div>
+<div id="section-3" class="section level1">
+<h1>```</h1>
+</div>
+<div id="r-boxplotctl-boxplottrt" class="section level1">
+<h1><code>{r} # boxplot(ctl) # boxplot(trt) #</code></h1>
+</div>
+<div id="r-ggplotdatainfoaesxtrtyctlgeom_pointcolorgreygeom_linecolorred" class="section level1">
+<h1><code>{r} # ggplot(data=info,aes(x=trt,y=ctl))+geom_point(color=&quot;grey&quot;)+geom_line(color=&quot;red&quot;) #</code></h1>
+</div>
+<div id="r-info11---cvariable1variable2-ggradarplot.data-info1" class="section level1">
+<h1><code>{r} # info1[,1] &lt;- c(&quot;variable1&quot;,&quot;variable2&quot;) # ggradar(plot.data =info1) #</code></h1>
+</div>
+<div id="r-需要使用的r包-librarytruncnorm-libraryggplot2" class="section level1">
+<h1><code>{r} # #需要使用的R包 # library(truncnorm) # library(ggplot2) #</code></h1>
+</div>
+<div id="section-4" class="section level1">
+<h1>5.4</h1>
+</div>
+<div id="r-1" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="cdf_function-functionux" class="section level1">
+<h1>cdf_function&lt;-function(u,x){</h1>
+</div>
+<div id="cdf---numericlengthx" class="section level1">
+<h1>cdf &lt;- numeric(length(x))</h1>
+</div>
+<div id="for-i-in-1lengthx" class="section level1">
+<h1>for (i in 1:length(x)) {</h1>
+</div>
+<div id="cdfi---mean30xiu-xi21-u-xi2" class="section level1">
+<h1>cdf[i] &lt;- mean(30<em>x[i]</em>(u * x[i])^2<em>(1-u </em>
+x[i])^2)</h1>
+</div>
+<div id="section-5" class="section level1">
+<h1>}</h1>
+</div>
+<div id="returnroundcdf3" class="section level1">
+<h1>return(round((cdf),3))</h1>
+</div>
+<div id="section-6" class="section level1">
+<h1>}</h1>
+</div>
+<div id="m--1e5" class="section level1">
+<h1>m&lt;- 1e5</h1>
+</div>
+<div id="set.seed1234" class="section level1">
+<h1>set.seed(1234)</h1>
+</div>
+<div id="u-runifm" class="section level1">
+<h1>u&lt;-runif(m)</h1>
+</div>
+<div id="x---seq.1-.9-length-9" class="section level1">
+<h1>x &lt;- seq(.1, .9, length = 9)</h1>
+</div>
+<div id="phi-pbetaxshape13shape23" class="section level1">
+<h1>phi = pbeta(x,shape1=3,shape2=3)</h1>
+</div>
+<div id="y---rbindxcdf_functionuxphi" class="section level1">
+<h1>y &lt;- rbind(x,cdf_function(u,x),phi)</h1>
+</div>
+<div id="printy" class="section level1">
+<h1>print(y)</h1>
+</div>
+<div id="section-7" class="section level1">
+<h1>```</h1>
+</div>
+<div id="section-8" class="section level1">
+<h1>5.9</h1>
+</div>
+<div id="由于题目没有指定σ的值故取1作为σ的值则p.d.f为" class="section level1">
+<h1>#由于题目没有指定σ的值，故取1作为σ的值，则p.d.f为</h1>
+</div>
+<div id="fx-x-e--x2-2-quad-x-geq-0" class="section level1">
+<h1><span class="math display">\[f(x) = {x} e^{- x^2 / 2}, \quad x \geq
+0\]</span></h1>
+</div>
+<div id="r-2" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="set.seed123" class="section level1">
+<h1>set.seed(123)</h1>
+</div>
+<div id="mc.phi---functionx-r-antithetic" class="section level1">
+<h1>MC.Phi &lt;- function(x, R, antithetic) {</h1>
+</div>
+<div id="u---runifr2" class="section level1">
+<h1>u &lt;- runif(R/2)</h1>
+</div>
+<div id="if-antithetic-v---runifr2-else" class="section level1">
+<h1>if (!antithetic) v &lt;- runif(R/2) else</h1>
+</div>
+<div id="v---1---u" class="section level1">
+<h1>v &lt;- 1 - u</h1>
+</div>
+<div id="u---cu-v" class="section level1">
+<h1>u &lt;- c(u, v)</h1>
+</div>
+<div id="cdf---numericlengthx-1" class="section level1">
+<h1>cdf &lt;- numeric(length(x))</h1>
+</div>
+<div id="for-i-in-1lengthx-1" class="section level1">
+<h1>for (i in 1:length(x)) {</h1>
+</div>
+<div id="cdfi---meanuxi2-exp-u-xi2-2" class="section level1">
+<h1>cdf[i] &lt;- mean(u<em>x[i]^2 </em> exp(-(u * x[i])^2 / 2))</h1>
+</div>
+<div id="section-9" class="section level1">
+<h1>}</h1>
+</div>
+<div id="cdf" class="section level1">
+<h1>cdf</h1>
+</div>
+<div id="section-10" class="section level1">
+<h1>}</h1>
+</div>
+<div id="x---seq.1-2.5-length5" class="section level1">
+<h1>x &lt;- seq(.1, 2.5, length=5)</h1>
+</div>
+<div id="mc1---mc.phix-r1e4anti-false" class="section level1">
+<h1>MC1 &lt;- MC.Phi(x, R=1e4,anti = FALSE)</h1>
+</div>
+<div id="mc2---mc.phix-r1e4anti-true" class="section level1">
+<h1>MC2 &lt;- MC.Phi(x, R=1e4,anti = TRUE)</h1>
+</div>
+<div id="printsdmc1" class="section level1">
+<h1>print(sd(MC1))</h1>
+</div>
+<div id="printsdmc2" class="section level1">
+<h1>print(sd(MC2))</h1>
+</div>
+<div id="printvarmc1-varmc2varmc1" class="section level1">
+<h1>print((var(MC1)-var(MC2))/var(MC1))</h1>
+</div>
+<div id="section-11" class="section level1">
+<h1>```</h1>
+</div>
+<div id="section-12" class="section level1">
+<h1>5.13</h1>
+</div>
+<div id="r-如下设置参数和所要估计的函数-m---1e5-theta.hat---se---numeric2-g---functionx-exp-x22-logx2sqrt2pi-x-1" class="section level1">
+<h1><code>{r} # #如下设置参数和所要估计的函数 # m &lt;- 1e5 # theta.hat &lt;- se &lt;- numeric(2) # g &lt;- function(x) { # exp(-x^2/2-log(x^2))/sqrt(2*pi)* (x &gt; 1) # } #</code></h1>
+</div>
+<div id="使用漂移指数分布" class="section level1">
+<h1>#使用漂移指数分布</h1>
+</div>
+<div id="fx-e-x-1-quad-xgeq-1" class="section level1">
+<h1><span class="math display">\[f(x)= e^{-(x-1)} ,\quad x\geq
+1\]</span></h1>
+</div>
+<div id="r-m---1e5-theta.hat---se---numeric2-g---functionx-exp-x22-logx2sqrt2pi-x-1-u-runifm-x---1-log1-u-fg---gx-exp-x-1-theta.hat1---meanfg-se1---sdfg" class="section level1">
+<h1><code>{r} # m &lt;- 1e5 # theta.hat &lt;- se &lt;- numeric(2) # g &lt;- function(x) { # exp(-x^2/2-log(x^2))/sqrt(2*pi)* (x &gt; 1) # } # u&lt;-runif(m) # x &lt;- 1-log(1-u) # fg &lt;- g(x) / exp(-(x-1)) # theta.hat[1] &lt;- mean(fg) # se[1] &lt;- sd(fg) #</code></h1>
+</div>
+<div id="使用正态分布" class="section level1">
+<h1>#使用正态分布</h1>
+</div>
+<div id="fx-frac1sqrt2pie-x-122-quad-x1" class="section level1">
+<h1><span class="math display">\[f(x)=
+\frac{1}{\sqrt(2\pi)}e^{-(x-1)^2/2}, \quad x&gt;1\]</span></h1>
+</div>
+<div id="r-m---1e5-theta.hat2---se2---numeric2-g---functionx-exp-x22-logx2sqrt2pi-x-1-x---rtruncnormn-m-a-1-b-inf-mean-1-sd-1-fg---gx-dtruncnormxmean1sd1a1binf-theta.hat2---meanfg-se2---sdfg" class="section level1">
+<h1><code>{r} # m &lt;- 1e5 # theta.hat2 &lt;- se2 &lt;- numeric(2) # g &lt;- function(x) { # exp(-x^2/2-log(x^2))/sqrt(2*pi)* (x &gt; 1) # } # x &lt;- rtruncnorm(n = m, a = 1, b = Inf, mean = 1, sd = 1) # fg &lt;- g(x) / dtruncnorm(x,mean=1,sd=1,a=1,b=Inf) # theta.hat[2] &lt;- mean(fg) # se[2] &lt;- sd(fg) #</code></h1>
+</div>
+<div id="r-printrbindtheta.hat-se" class="section level1">
+<h1><code>{r} # print(rbind(theta.hat, se)) #</code></h1>
+</div>
+<div id="for-n-104-2-4-4-4-6-4-8-4-apply-the-fast-sorting-algorithm-to-randomly-permuted-numbers-of-1-n-.-calculate-computation-time-averaged-over-100-simulations-denoted-by-a_n-.-regress-a_n-on-t_n-n-n-and-graphically-show-the-results-scatter-plot-and-regression-line." class="section level1">
+<h1>For n = 10^4, 2 ^4, 4 ^4, 6 ^4, 8 ^4 , apply the fast sorting
+algorithm to randomly permuted numbers of 1, , n . Calculate computation
+time averaged over 100 simulations, denoted by a_n . Regress a_n on t_n
+:= n (n) , and graphically show the results (scatter plot and regression
+line).</h1>
+</div>
+<div id="r-3" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="定义快速排序函数" class="section level1">
+<h1>#定义快速排序函数</h1>
+</div>
+<div id="quicksort---functionarr" class="section level1">
+<h1>quicksort &lt;- function(arr) {</h1>
+</div>
+<div id="if-lengtharr-1" class="section level1">
+<h1>if (length(arr) &lt;= 1) {</h1>
+</div>
+<div id="returnlistsorted-arr-steps-0" class="section level1">
+<h1>return(list(sorted = arr, steps = 0))</h1>
+</div>
+<div id="else" class="section level1">
+<h1>} else {</h1>
+</div>
+<div id="pivot---arrfloorlengtharr-2" class="section level1">
+<h1>pivot &lt;- arr[floor(length(arr) / 2)]</h1>
+</div>
+<div id="left---arrarr-pivot" class="section level1">
+<h1>left &lt;- arr[arr &lt; pivot]</h1>
+</div>
+<div id="middle---arrarr-pivot" class="section level1">
+<h1>middle &lt;- arr[arr == pivot]</h1>
+</div>
+<div id="right---arrarr-pivot" class="section level1">
+<h1>right &lt;- arr[arr &gt; pivot]</h1>
+</div>
+<div id="steps---lengtharr" class="section level1">
+<h1>steps &lt;- length(arr)</h1>
+</div>
+<div id="left_result---quicksortleft" class="section level1">
+<h1>left_result &lt;- quicksort(left)</h1>
+</div>
+<div id="right_result---quicksortright" class="section level1">
+<h1>right_result &lt;- quicksort(right)</h1>
+</div>
+<div id="returnlistsorted-cleft_resultsorted-middle-right_resultsorted" class="section level1">
+<h1>return(list(sorted = c(left_result<span class="math inline">\(sorted, middle, right_result\)</span>sorted),</h1>
+</div>
+<div id="steps-steps-left_resultsteps-right_resultsteps" class="section level1">
+<h1>steps = steps + left_result<span class="math inline">\(steps +
+right_result\)</span>steps))</h1>
+</div>
+<div id="section-13" class="section level1">
+<h1>}</h1>
+</div>
+<div id="section-14" class="section level1">
+<h1>}</h1>
+</div>
+<div id="n_values---c1e4-2e4-4e4-6e4-8e4" class="section level1">
+<h1>n_values &lt;- c(1e4, 2e4, 4e4, 6e4, 8e4)</h1>
+</div>
+<div id="an---numericlengthn_values令an为快速排序实验所需的步数" class="section level1">
+<h1>an &lt;- numeric(length(n_values))#令an为快速排序实验所需的步数</h1>
+</div>
+<div id="tn---n_valueslogn_valuestn为快速排序所需的理论步数" class="section level1">
+<h1>tn &lt;- n_values*log(n_values)#tn为快速排序所需的理论步数</h1>
+</div>
+<div id="进行快速排序实验" class="section level1">
+<h1>#进行快速排序实验</h1>
+</div>
+<div id="for-i-in-seq_alongn_values" class="section level1">
+<h1>for (i in seq_along(n_values)) {</h1>
+</div>
+<div id="n---n_valuesi" class="section level1">
+<h1>n &lt;- n_values[i]</h1>
+</div>
+<div id="random_array---sample1nn" class="section level1">
+<h1>random_array &lt;- sample(1:n,n)</h1>
+</div>
+<div id="result---quicksortrandom_array" class="section level1">
+<h1>result &lt;- quicksort(random_array)</h1>
+</div>
+<div id="ani---resultsteps" class="section level1">
+<h1>an[i] &lt;- result$steps</h1>
+</div>
+<div id="section-15" class="section level1">
+<h1>}</h1>
+</div>
+<div id="作出表格和图像" class="section level1">
+<h1>#作出表格和图像</h1>
+</div>
+<div id="for-i-in-seq_alongn_values-1" class="section level1">
+<h1>for (i in seq_along(n_values)) {</h1>
+</div>
+<div id="catsprintfsize-d-steps-d-n_valuesi-ani" class="section level1">
+<h1>cat(sprintf(“Size: %d, Steps: %d”, n_values[i], an[i]))</h1>
+</div>
+<div id="section-16" class="section level1">
+<h1>}</h1>
+</div>
+<div id="table-data.frametnan" class="section level1">
+<h1>table&lt;-data.frame(tn,an)</h1>
+</div>
+<div id="ggplottable-aesx-tn-y-an" class="section level1">
+<h1>ggplot(table, aes(x = tn, y = an)) +</h1>
+</div>
+<div id="geom_point-绘制散点图" class="section level1">
+<h1>geom_point() + # 绘制散点图</h1>
+</div>
+<div id="geom_smoothmethod-lm-se-false-添加回归线" class="section level1">
+<h1>geom_smooth(method = “lm”, se = FALSE) + # 添加回归线</h1>
+</div>
+<div id="labsx-n-logn-y-computation-time" class="section level1">
+<h1>labs(x = “n log(n)”, y = “Computation Time”) +</h1>
+</div>
+<div id="theme_minimal" class="section level1">
+<h1>theme_minimal()</h1>
+</div>
+<div id="section-17" class="section level1">
+<h1>```</h1>
+</div>
+<div id="section-18" class="section level1">
+<h1>6.6</h1>
+</div>
+<div id="r-4" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="m为试验次数" class="section level1">
+<h1>#m为试验次数</h1>
+</div>
+<div id="quantile_skewness_values---functiondataquantiles" class="section level1">
+<h1>Quantile_skewness_values &lt;- function(data,quantiles){</h1>
+</div>
+<div id="sqrt.b1-numericm" class="section level1">
+<h1>sqrt.b1&lt;-numeric(m)</h1>
+</div>
+<div id="e-numericlengthquantiles" class="section level1">
+<h1>e&lt;-numeric(length(quantiles))</h1>
+</div>
+<div id="for-i-in-1m" class="section level1">
+<h1>for (i in 1:m) {</h1>
+</div>
+<div id="x---meandatai" class="section level1">
+<h1>x &lt;- mean(data[i,])</h1>
+</div>
+<div id="y---sddatai" class="section level1">
+<h1>y &lt;- sd(data[i,])</h1>
+</div>
+<div id="sqrt.b1i---meandatai---x3-y3" class="section level1">
+<h1>sqrt.b1[i] &lt;- mean((data[i,] - x)^3) / y^3</h1>
+</div>
+<div id="section-19" class="section level1">
+<h1>}</h1>
+</div>
+<div id="e---quantilesqrt.b1-probs-quantiles" class="section level1">
+<h1>e &lt;- quantile(sqrt.b1, probs = quantiles)</h1>
+</div>
+<div id="printquantiles" class="section level1">
+<h1>print(quantiles)</h1>
+</div>
+<div id="printe" class="section level1">
+<h1>print(e)</h1>
+</div>
+<div id="section-20" class="section level1">
+<h1>}</h1>
+</div>
+<div id="normal_quantiles_values--functionnquantiles" class="section level1">
+<h1>normal_quantiles_values&lt;- function(n,quantiles){</h1>
+</div>
+<div id="t-qnormquantiles-mean-0-sd-sqrt6m" class="section level1">
+<h1>t&lt;-qnorm(quantiles, mean = 0, sd = sqrt(6/m))</h1>
+</div>
+<div id="printt" class="section level1">
+<h1>print(t)</h1>
+</div>
+<div id="section-21" class="section level1">
+<h1>}</h1>
+</div>
+<div id="standard_errors---functionquantilesx_valuesm" class="section level1">
+<h1>standard_errors &lt;- function(quantiles,x_values,m) {</h1>
+</div>
+<div id="se---sqrtquantiles1-quantiles-m-x_values2" class="section level1">
+<h1>se &lt;- sqrt((quantiles<em>(1-quantiles)) / (m </em>
+x_values^2))</h1>
+</div>
+<div id="printse" class="section level1">
+<h1>print(se)</h1>
+</div>
+<div id="section-22" class="section level1">
+<h1>}</h1>
+</div>
+<div id="set.seed123-1" class="section level1">
+<h1>set.seed(123)</h1>
+</div>
+<div id="n-10000" class="section level1">
+<h1>n&lt;-10000</h1>
+</div>
+<div id="m-10000" class="section level1">
+<h1>m&lt;-10000</h1>
+</div>
+<div id="quantiles---c0.025-0.05-0.95-0.975" class="section level1">
+<h1>quantiles &lt;- c(0.025, 0.05, 0.95, 0.975)</h1>
+</div>
+<div id="x_values---qnormquantiles" class="section level1">
+<h1>x_values &lt;- qnorm(quantiles)</h1>
+</div>
+<div id="data--matrixrnormm-n-nrow-m-ncol-n" class="section level1">
+<h1>data&lt;- matrix(rnorm(m * n), nrow = m, ncol = n)</h1>
+</div>
+<div id="quantile_skewness_valuesdataquantiles" class="section level1">
+<h1>Quantile_skewness_values(data,quantiles)</h1>
+</div>
+<div id="normal_quantiles_valuesnquantiles" class="section level1">
+<h1>normal_quantiles_values(n,quantiles)</h1>
+</div>
+<div id="standard_errorsquantilesx_valuesm" class="section level1">
+<h1>standard_errors(quantiles,x_values,m)</h1>
+</div>
+<div id="b-r" class="section level1">
+<h1><code># 6.B #</code>{r}</h1>
+</div>
+<div id="加载必要的库并设置随机种子" class="section level1">
+<h1># 加载必要的库并设置随机种子</h1>
+</div>
+<div id="set.seed1234-1" class="section level1">
+<h1>set.seed(1234)</h1>
+</div>
+<div id="empirical_power---functionn-m-alpha-r-0.5" class="section level1">
+<h1>empirical_power &lt;- function(n, m, alpha, r = 0.5) {</h1>
+</div>
+<div id="生成双变量非正态分布数据并执行相关性检验的函数" class="section level1">
+<h1># 生成双变量非正态分布数据并执行相关性检验的函数</h1>
+</div>
+<div id="simulate_and_test---functionn-r-alpha" class="section level1">
+<h1>simulate_and_test &lt;- function(n, r, alpha) {</h1>
+</div>
+<div id="生成x正态分布" class="section level1">
+<h1># 生成X（正态分布）</h1>
+</div>
+<div id="x---rnormn" class="section level1">
+<h1>X &lt;- rnorm(n)</h1>
+</div>
+<div id="生成y非正态分布与x有相关性" class="section level1">
+<h1># 生成Y（非正态分布，与X有相关性）</h1>
+</div>
+<div id="y----1500-x3-3-rgamman-shape-3-rate-2" class="section level1">
+<h1>Y &lt;- -1/500 * X^3 + 3 * rgamma(n, shape = 3, rate = 2)</h1>
+</div>
+<div id="执行相关性检验" class="section level1">
+<h1># 执行相关性检验</h1>
+</div>
+<div id="pearson_test---cor.testx-y-method-pearson" class="section level1">
+<h1>pearson_test &lt;- cor.test(X, Y, method = “pearson”)</h1>
+</div>
+<div id="spearman_test---cor.testx-y-method-spearman" class="section level1">
+<h1>spearman_test &lt;- cor.test(X, Y, method = “spearman”)</h1>
+</div>
+<div id="kendall_test---cor.testx-y-method-kendall" class="section level1">
+<h1>kendall_test &lt;- cor.test(X, Y, method = “kendall”)</h1>
+</div>
+<div id="返回检验的p值是否小于显著性水平即是否拒绝原假设" class="section level1">
+<h1># 返回检验的p值是否小于显著性水平（即是否拒绝原假设）</h1>
+</div>
+<div id="returnc" class="section level1">
+<h1>return(c(</h1>
+</div>
+<div id="pearson-pearson_testp.value-alpha-spearman-spearman_testp.value-alpha" class="section level1">
+<h1>pearson = pearson_test<span class="math inline">\(p.value &lt;
+alpha,
+#       spearman = spearman_test\)</span>p.value &lt; alpha,</h1>
+</div>
+<div id="kendall-kendall_testp.value-alpha" class="section level1">
+<h1>kendall = kendall_test$p.value &lt; alpha</h1>
+</div>
+<div id="section-23" class="section level1">
+<h1>))</h1>
+</div>
+<div id="section-24" class="section level1">
+<h1>}</h1>
+</div>
+<div id="初始化拒绝次数计数器" class="section level1">
+<h1># 初始化拒绝次数计数器</h1>
+</div>
+<div id="rejection_counts---numeric3" class="section level1">
+<h1>rejection_counts &lt;- numeric(3)</h1>
+</div>
+<div id="namesrejection_counts---cpearson-spearman-kendall" class="section level1">
+<h1>names(rejection_counts) &lt;- c(“pearson”, “spearman”,
+“kendall”)</h1>
+</div>
+<div id="执行模拟" class="section level1">
+<h1># 执行模拟</h1>
+</div>
+<div id="for-i-in-1m-1" class="section level1">
+<h1>for (i in 1:m) {</h1>
+</div>
+<div id="rejection_counts---rejection_counts-simulate_and_testn-r-alpha" class="section level1">
+<h1>rejection_counts &lt;- rejection_counts + simulate_and_test(n, r,
+alpha)</h1>
+</div>
+<div id="section-25" class="section level1">
+<h1>}</h1>
+</div>
+<div id="计算并返回实证功效" class="section level1">
+<h1># 计算并返回实证功效</h1>
+</div>
+<div id="empirical_power---rejection_counts-m" class="section level1">
+<h1>empirical_power &lt;- rejection_counts / m</h1>
+</div>
+<div id="returnempirical_power" class="section level1">
+<h1>return(empirical_power)</h1>
+</div>
+<div id="section-26" class="section level1">
+<h1>}</h1>
+</div>
+<div id="n---1e3" class="section level1">
+<h1>n &lt;- 1e3</h1>
+</div>
+<div id="m---1e3" class="section level1">
+<h1>m &lt;- 1e3</h1>
+</div>
+<div id="alpha---0.05" class="section level1">
+<h1>alpha &lt;- 0.05</h1>
+</div>
+<div id="empirical_power_results---empirical_powern-m-alpha" class="section level1">
+<h1>empirical_power_results &lt;- empirical_power(n, m, alpha)</h1>
+</div>
+<div id="catempirical-power-pearson---non-normal-empirical_power_resultspearson" class="section level1">
+<h1>cat(“Empirical Power (Pearson - Non-Normal):”,
+empirical_power_results[“pearson”], “”)</h1>
+</div>
+<div id="catempirical-power-spearman---non-normal-empirical_power_resultsspearman" class="section level1">
+<h1>cat(“Empirical Power (Spearman - Non-Normal):”,
+empirical_power_results[“spearman”], “”)</h1>
+</div>
+<div id="catempirical-power-kendall---non-normal-empirical_power_resultskendall" class="section level1">
+<h1>cat(“Empirical Power (Kendall - Non-Normal):”,
+empirical_power_results[“kendall”], “”)</h1>
+</div>
+<div id="section-27" class="section level1">
+<h1>```</h1>
+</div>
+<div id="补充问题" class="section level1">
+<h1>##补充问题：</h1>
+</div>
+<div id="我们在两个不同的方法下进行了-10000-次实验得到了两个统计量功效值一个为-0.651另一个为-0.676现在我们希望在显著性水平为-0.05-时检验这两个功效值是否有显著差异" class="section level1">
+<h1>我们在两个不同的方法下进行了 10,000
+次实验，得到了两个统计量（功效值）：一个为 0.651，另一个为
+0.676。现在我们希望在显著性水平为 0.05
+时，检验这两个功效值是否有显著差异。</h1>
+</div>
+<div id="对应的假设检验问题是什么" class="section level1">
+<h1>#对应的假设检验问题是什么？</h1>
+</div>
+<div id="这是一个关于两个独立方法功效比较的假设检验问题具体来说" class="section level1">
+<h1>这是一个关于两个独立方法功效比较的假设检验问题。具体来说：</h1>
+</div>
+<div id="零假设h0假设两种方法具有相同的功效即-p1p2" class="section level1">
+<h1>零假设（H0)：假设两种方法具有相同的功效，即 p1=p2</h1>
+</div>
+<div id="备择假设h1假设两种方法具有不同的功效即-p1与p2不相等" class="section level1">
+<h1>备择假设（H1）：假设两种方法具有不同的功效，即 p1与p2不相等</h1>
+</div>
+<div id="section-28" class="section level1">
+<h1>。</h1>
+</div>
+<div id="我们应该使用哪种检验z检验两样本t检验配对t检验还是mcnemar检验为什么" class="section level1">
+<h1>#我们应该使用哪种检验？Z检验、两样本t检验、配对t检验还是McNemar检验？为什么？</h1>
+</div>
+<div id="我们应该使用mcnemar检验因为" class="section level1">
+<h1>我们应该使用McNemar检验，因为：</h1>
+</div>
+<div id="此时由于两个方法所使用的为同一个样本所以排除两样本t检验和z检验" class="section level1">
+<h1>1.此时由于两个方法所使用的为同一个样本，所以排除两样本t检验和z检验。</h1>
+</div>
+<div id="此时可以使用配对t检验但是此时最优的做法是使用mcnemar检验因为" class="section level1">
+<h1>2.此时可以使用配对t检验，但是此时最优的做法是使用McNemar检验，因为：</h1>
+</div>
+<div id="a.mcnemar检验特别适用于二分类数据" class="section level1">
+<h1>a.McNemar检验特别适用于二分类数据</h1>
+</div>
+<div id="b.当研究目标是评估两种处理方法或诊断方式在同一组受试者中的效果是" class="section level1">
+<h1>b.当研究目标是评估两种处理方法或诊断方式在同一组受试者中的效果是</h1>
+</div>
+<div id="否存在显著差异时mcnemar检验是一个合适的选择它可以帮助我们确" class="section level1">
+<h1>否存在显著差异时，McNemar检验是一个合适的选择。它可以帮助我们确</h1>
+</div>
+<div id="定两种处理方法是否导致受试者分类结果的一致性或不一致性" class="section level1">
+<h1>定两种处理方法是否导致受试者分类结果的一致性或不一致性。</h1>
+</div>
+<div id="下面是使用mcnemar的代码" class="section level1">
+<h1>#下面是使用McNemar的代码：</h1>
+</div>
+<div id="r-5" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="set.seed123-设置随机种子以便重现结果" class="section level1">
+<h1>set.seed(123) # 设置随机种子以便重现结果</h1>
+</div>
+<div id="method_a_power---rnorm10000-mean-0.651-sd-0.1-假设方法a的功效值服从正态分布" class="section level1">
+<h1>method_a_power &lt;- rnorm(10000, mean = 0.651, sd = 0.1) #
+假设方法A的功效值服从正态分布</h1>
+</div>
+<div id="method_b_power---rnorm10000-mean-0.676-sd-0.1-假设方法b的功效值服从正态分布" class="section level1">
+<h1>method_b_power &lt;- rnorm(10000, mean = 0.676, sd = 0.1) #
+假设方法B的功效值服从正态分布</h1>
+</div>
+<div id="选择一个阈值" class="section level1">
+<h1># 选择一个阈值</h1>
+</div>
+<div id="threshold---0.5" class="section level1">
+<h1>threshold &lt;- 0.5</h1>
+</div>
+<div id="将功效值转化为二分类结果" class="section level1">
+<h1># 将功效值转化为二分类结果</h1>
+</div>
+<div id="method_a_binary---ifelsemethod_a_power-threshold-1-0" class="section level1">
+<h1>method_a_binary &lt;- ifelse(method_a_power &gt; threshold, 1,
+0)</h1>
+</div>
+<div id="method_b_binary---ifelsemethod_b_power-threshold-1-0" class="section level1">
+<h1>method_b_binary &lt;- ifelse(method_b_power &gt; threshold, 1,
+0)</h1>
+</div>
+<div id="构建2x2列联表" class="section level1">
+<h1># 构建2x2列联表</h1>
+</div>
+<div id="table_data---tablemethoda-method_a_binary-methodb-method_b_binary" class="section level1">
+<h1>table_data &lt;- table(MethodA = method_a_binary, MethodB =
+method_b_binary)</h1>
+</div>
+<div id="打印列联表" class="section level1">
+<h1># 打印列联表</h1>
+</div>
+<div id="printtable_data" class="section level1">
+<h1>print(table_data)</h1>
+</div>
+<div id="应用mcnemar检验注意这不是标准做法仅供演示" class="section level1">
+<h1># 应用McNemar检验（注意：这不是标准做法，仅供演示）</h1>
+</div>
+<div id="mcnemar_result---mcnemar.testtable_data" class="section level1">
+<h1>mcnemar_result &lt;- mcnemar.test(table_data)</h1>
+</div>
+<div id="printmcnemar_result" class="section level1">
+<h1>print(mcnemar_result)</h1>
+</div>
+<div id="section-29" class="section level1">
+<h1>```</h1>
+</div>
+<div id="r-6" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="set.seed123-2" class="section level1">
+<h1>set.seed(123)</h1>
+</div>
+<div id="n---1e3-1" class="section level1">
+<h1>n &lt;- 1e3</h1>
+</div>
+<div id="null_proportion---0.95" class="section level1">
+<h1>null_proportion &lt;- 0.95</h1>
+</div>
+<div id="alt_proportion---0.05" class="section level1">
+<h1>alt_proportion &lt;- 0.05</h1>
+</div>
+<div id="alpha---0.1" class="section level1">
+<h1>alpha &lt;- 0.1</h1>
+</div>
+<div id="m---1e4" class="section level1">
+<h1>m &lt;- 1e4</h1>
+</div>
+<div id="fwer---functionrejected-false_positives" class="section level1">
+<h1>FWER &lt;- function(rejected, false_positives) {</h1>
+</div>
+<div id="meanfalse_positives-0" class="section level1">
+<h1>mean(false_positives &gt; 0)</h1>
+</div>
+<div id="section-30" class="section level1">
+<h1>}</h1>
+</div>
+<div id="fdr---functionrejected-false_positives" class="section level1">
+<h1>FDR &lt;- function(rejected, false_positives) {</h1>
+</div>
+<div id="if-rejected-0-return0" class="section level1">
+<h1>if (rejected == 0) return(0)</h1>
+</div>
+<div id="meanfalse_positives-rejected" class="section level1">
+<h1>mean(false_positives / rejected)</h1>
+</div>
+<div id="section-31" class="section level1">
+<h1>}</h1>
+</div>
+<div id="tpr---functionrejected-true_positives" class="section level1">
+<h1>TPR &lt;- function(rejected, true_positives) {</h1>
+</div>
+<div id="if-rejected-0-return0-1" class="section level1">
+<h1>if (rejected == 0) return(0)</h1>
+</div>
+<div id="meantrue_positives-50" class="section level1">
+<h1>mean(true_positives / 50)</h1>
+</div>
+<div id="section-32" class="section level1">
+<h1>}</h1>
+</div>
+<div id="results---replicatem" class="section level1">
+<h1>results &lt;- replicate(m, {</h1>
+</div>
+<div id="p_values---crunif950-rbeta50-0.1-1" class="section level1">
+<h1>p_values &lt;- c(runif(950), rbeta(50, 0.1, 1))</h1>
+</div>
+<div id="p1---p.adjustp_values-method-bonferroni" class="section level1">
+<h1>p1 &lt;- p.adjust(p_values, method = “bonferroni”)</h1>
+</div>
+<div id="t1---sump1-alpha" class="section level1">
+<h1>t1 &lt;- sum(p1 &lt; alpha)</h1>
+</div>
+<div id="w1---sump11950-alpha" class="section level1">
+<h1>w1 &lt;- sum(p1[1:950] &lt; alpha)</h1>
+</div>
+<div id="bonferroni_true_positives---sump19511000-alpha" class="section level1">
+<h1>#bonferroni_true_positives &lt;- sum(p1[951:1000] &lt; alpha)</h1>
+</div>
+<div id="p2---p.adjustp_values-method-bh" class="section level1">
+<h1>p2 &lt;- p.adjust(p_values, method = “BH”)</h1>
+</div>
+<div id="t2---sump2-alpha" class="section level1">
+<h1>t2 &lt;- sum(p2 &lt; alpha)</h1>
+</div>
+<div id="w2---sump21950-alpha" class="section level1">
+<h1>w2 &lt;- sum(p2[1:950] &lt; alpha)</h1>
+</div>
+<div id="bh_true_positives---sump29511000-alpha" class="section level1">
+<h1>#bh_true_positives &lt;- sum(p2[951:1000] &lt; alpha)</h1>
+</div>
+<div id="c" class="section level1">
+<h1>c(</h1>
+</div>
+<div id="fwert1-w1" class="section level1">
+<h1>FWER(t1, w1),</h1>
+</div>
+<div id="fdrt1-w1" class="section level1">
+<h1>FDR(t1, w1),</h1>
+</div>
+<div id="tprt1-w1" class="section level1">
+<h1>TPR(t1, w1),</h1>
+</div>
+<div id="fwert2-w2" class="section level1">
+<h1>FWER(t2, w2),</h1>
+</div>
+<div id="fdrt2-w2" class="section level1">
+<h1>FDR(t2, w2),</h1>
+</div>
+<div id="tprt2-w2" class="section level1">
+<h1>TPR(t2, w2)</h1>
+</div>
+<div id="section-33" class="section level1">
+<h1>)</h1>
+</div>
+<div id="section-34" class="section level1">
+<h1>})</h1>
+</div>
+<div id="results_mean---colmeansresults" class="section level1">
+<h1>results_mean &lt;- colMeans(results)</h1>
+</div>
+<div id="fwer_bonf---results_mean1" class="section level1">
+<h1>FWER_Bonf &lt;- results_mean[1]</h1>
+</div>
+<div id="fdr_bonf---results_mean2" class="section level1">
+<h1>FDR_Bonf &lt;- results_mean[2]</h1>
+</div>
+<div id="tpr_bonf---results_mean3" class="section level1">
+<h1>TPR_Bonf &lt;- results_mean[3]</h1>
+</div>
+<div id="fwer_bh---results_mean4" class="section level1">
+<h1>FWER_BH &lt;- results_mean[4]</h1>
+</div>
+<div id="fdr_bh---results_mean5" class="section level1">
+<h1>FDR_BH &lt;- results_mean[5]</h1>
+</div>
+<div id="tpr_bh---results_mean6" class="section level1">
+<h1>TPR_BH &lt;- results_mean[6]</h1>
+</div>
+<div id="output_table---data.frame" class="section level1">
+<h1>output_table &lt;- data.frame(</h1>
+</div>
+<div id="metric-cfwer-fdr-tpr" class="section level1">
+<h1>Metric = c(“FWER”, “FDR”, “TPR”),</h1>
+</div>
+<div id="bonferroni-cfwer_bonf-fdr_bonf-tpr_bonf" class="section level1">
+<h1>Bonferroni = c(FWER_Bonf, FDR_Bonf, TPR_Bonf),</h1>
+</div>
+<div id="bh-cfwer_bh-fdr_bh-tpr_bh" class="section level1">
+<h1>BH = c(FWER_BH, FDR_BH, TPR_BH)</h1>
+</div>
+<div id="section-35" class="section level1">
+<h1>)</h1>
+</div>
+<div id="printoutput_table" class="section level1">
+<h1>print(output_table)</h1>
+</div>
+<div id="section-36" class="section level1">
+<h1>```</h1>
+</div>
+<div id="section-37" class="section level1">
+<h1>#7.4</h1>
+</div>
+<div id="指数分布参数lambda的mle估计量为fracnsum_i1n-x_i-." class="section level1">
+<h1>指数分布参数<span class="math display">\[\lambda\]</span>的MLE估计量为<span class="math display">\[\frac{n}{\sum_{i=1}^{n} x_i} \]</span>.</h1>
+</div>
+<div id="产生差异的原因是因为每次取样都是可放回的随机抽样所以用boostrap的方法来估计会" class="section level1">
+<h1>产生差异的原因是因为每次取样都是可放回的随机抽样，所以用boostrap的方法来估计会</h1>
+</div>
+<div id="在原数据生成的估计的附近波动同时随着试验次数的增多boostrap产生的估计值会接近" class="section level1">
+<h1>在原数据生成的估计的附近波动，同时随着试验次数的增多，boostrap产生的估计值会接近</h1>
+</div>
+<div id="原始的估计值." class="section level1">
+<h1>原始的估计值.</h1>
+</div>
+<div id="r-7" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="set.seed123-3" class="section level1">
+<h1>set.seed(123)</h1>
+</div>
+<div id="data-c3-5-7-18-43-85-91-98-100-130-230-487" class="section level1">
+<h1>data&lt;-c(3, 5, 7, 18, 43, 85, 91, 98, 100, 130, 230, 487)</h1>
+</div>
+<div id="lambda--meandata" class="section level1">
+<h1>lambda&lt;- mean(data)</h1>
+</div>
+<div id="b---1e3" class="section level1">
+<h1>B &lt;- 1e3</h1>
+</div>
+<div id="n---lengthdata" class="section level1">
+<h1>n &lt;- length(data)</h1>
+</div>
+<div id="r---numericb" class="section level1">
+<h1>R &lt;- numeric(B)</h1>
+</div>
+<div id="sample0---numericn" class="section level1">
+<h1>sample0 &lt;- numeric(n)</h1>
+</div>
+<div id="boostrap_lambda-numericb" class="section level1">
+<h1>boostrap_lambda&lt;-numeric(B)</h1>
+</div>
+<div id="for-b-in-1b" class="section level1">
+<h1>for (b in 1:B) {</h1>
+</div>
+<div id="for-i-in-1n" class="section level1">
+<h1>for (i in 1:n){</h1>
+</div>
+<div id="i---sample1n-size-1replace-true" class="section level1">
+<h1>i &lt;- sample(1:n, size = 1,replace = TRUE)</h1>
+</div>
+<div id="sample0i---datai" class="section level1">
+<h1>sample0[i] &lt;- data[i]</h1>
+</div>
+<div id="section-38" class="section level1">
+<h1>}</h1>
+</div>
+<div id="boostrap_lambdab---1meansample0" class="section level1">
+<h1>boostrap_lambda[b] &lt;- 1/mean(sample0)</h1>
+</div>
+<div id="section-39" class="section level1">
+<h1>}</h1>
+</div>
+<div id="lambda--1meandata" class="section level1">
+<h1>lambda&lt;- 1/mean(data)</h1>
+</div>
+<div id="bias---lambda---meanboostrap_lambda" class="section level1">
+<h1>bias &lt;- lambda - mean(boostrap_lambda)</h1>
+</div>
+<div id="stand_error---sdboostrap_lambda" class="section level1">
+<h1>stand_error &lt;- sd(boostrap_lambda)</h1>
+</div>
+<div id="catestimated-lambda-lambda" class="section level1">
+<h1>cat(“estimated lambda:”, lambda,“”)</h1>
+</div>
+<div id="catbias-bias" class="section level1">
+<h1>cat(“bias:”, bias,“”)</h1>
+</div>
+<div id="catstand-error-stand_error" class="section level1">
+<h1>cat(“stand error:”, stand_error)</h1>
+</div>
+<div id="section-40" class="section level1">
+<h1>```</h1>
+</div>
+<div id="section-41" class="section level1">
+<h1>#7.5</h1>
+</div>
+<div id="r-8" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="libraryboot" class="section level1">
+<h1>library(boot)</h1>
+</div>
+<div id="data---c3-5-7-18-43-85-91-98-100-130-230-487" class="section level1">
+<h1>data &lt;- c(3, 5, 7, 18, 43, 85, 91, 98, 100, 130, 230, 487)</h1>
+</div>
+<div id="lambda_mle_bootstrap---functiondata-i" class="section level1">
+<h1>lambda_mle_bootstrap &lt;- function(data, i) {</h1>
+</div>
+<div id="sample1---datai" class="section level1">
+<h1>sample1 &lt;- data[i]</h1>
+</div>
+<div id="return1-meansample1" class="section level1">
+<h1>return(1 / mean(sample1))</h1>
+</div>
+<div id="section-42" class="section level1">
+<h1>}</h1>
+</div>
+<div id="bootstrap_results---bootdata-statistic-lambda_mle_bootstrap-r-1e3" class="section level1">
+<h1>bootstrap_results &lt;- boot(data, statistic = lambda_mle_bootstrap,
+R = 1e3)</h1>
+</div>
+<div id="ci_norm---boot.cibootstrap_results-type-norm" class="section level1">
+<h1>ci_norm &lt;- boot.ci(bootstrap_results, type = “norm”)</h1>
+</div>
+<div id="ci_basic---boot.cibootstrap_results-type-basic" class="section level1">
+<h1>ci_basic &lt;- boot.ci(bootstrap_results, type = “basic”)</h1>
+</div>
+<div id="ci_perc---boot.cibootstrap_results-type-perc" class="section level1">
+<h1>ci_perc &lt;- boot.ci(bootstrap_results, type = “perc”)</h1>
+</div>
+<div id="ci_bca---boot.cibootstrap_results-type-bca" class="section level1">
+<h1>ci_bca &lt;- boot.ci(bootstrap_results, type = “bca”)</h1>
+</div>
+<div id="catstandard-normal-method-ci-ci_normnormal-n-catbasic-method-cin-ci_basicbasic" class="section level1">
+<h1>cat(“Standard Normal Method CI:”, ci_norm<span class="math inline">\(normal, &quot;\n&quot;)
+# cat(&quot;Basic Method CI:\n&quot;, ci_basic\)</span>basic, “”)</h1>
+</div>
+<div id="catpercentile-method-ci-ci_percpercent-n-catbca-method-cin-ci_bcabca" class="section level1">
+<h1>cat(“Percentile Method CI:”, ci_perc<span class="math inline">\(percent, &quot;\n&quot;)
+# cat(&quot;BCa Method CI:\n&quot;, ci_bca\)</span>bca, “”)</h1>
+</div>
+<div id="section-43" class="section level1">
+<h1>```</h1>
+</div>
+<div id="section-44" class="section level1">
+<h1>7.8</h1>
+</div>
+<div id="r-9" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="librarybootstrap" class="section level1">
+<h1>library(bootstrap)</h1>
+</div>
+<div id="data---scor" class="section level1">
+<h1>data &lt;- scor</h1>
+</div>
+<div id="n-nrowdata" class="section level1">
+<h1>n&lt;-nrow(data)</h1>
+</div>
+<div id="val-numericn" class="section level1">
+<h1>val&lt;-numeric(n)</h1>
+</div>
+<div id="theta.jack-numeric5" class="section level1">
+<h1>theta.jack&lt;-numeric(5)</h1>
+</div>
+<div id="theta--functiondata" class="section level1">
+<h1>theta&lt;- function(data){</h1>
+</div>
+<div id="svd_result---svddata" class="section level1">
+<h1>svd_result &lt;- svd(data)</h1>
+</div>
+<div id="val-svd_resultd" class="section level1">
+<h1>val = svd_result$d</h1>
+</div>
+<div id="val_sorted---sortval-decreasing-true" class="section level1">
+<h1>val_sorted &lt;- sort(val, decreasing = TRUE)</h1>
+</div>
+<div id="returnval_sorted1sumval" class="section level1">
+<h1>return(val_sorted[1]/sum(val))</h1>
+</div>
+<div id="section-45" class="section level1">
+<h1>}</h1>
+</div>
+<div id="fori-in-1n" class="section level1">
+<h1>for(i in 1:n){</h1>
+</div>
+<div id="theta.jacki---thetadata-i" class="section level1">
+<h1>theta.jack[i] &lt;- theta(data[-i])</h1>
+</div>
+<div id="section-46" class="section level1">
+<h1>}</h1>
+</div>
+<div id="theta.hat-thetadata" class="section level1">
+<h1>theta.hat&lt;-theta(data)</h1>
+</div>
+<div id="bias.jack---n-1meantheta.jack-theta.hat" class="section level1">
+<h1>bias.jack &lt;- (n-1)*(mean(theta.jack)-theta.hat)</h1>
+</div>
+<div id="sd_error--sdtheta.jack" class="section level1">
+<h1>sd_error&lt;- sd(theta.jack)</h1>
+</div>
+<div id="catthetatheta.hat" class="section level1">
+<h1>cat(“theta”,theta.hat,“”)</h1>
+</div>
+<div id="catbiasbias.jack" class="section level1">
+<h1>cat(“bias”,bias.jack,“”)</h1>
+</div>
+<div id="catstand-errorsd_error" class="section level1">
+<h1>cat(“stand error”,sd_error)</h1>
+</div>
+<div id="r-10" class="section level1">
+<h1><code># 7.10 #</code>{r}</h1>
+</div>
+<div id="librarydaag" class="section level1">
+<h1>library(DAAG)</h1>
+</div>
+<div id="x---ironslagchemical-y---ironslagmagnetic" class="section level1">
+<h1>X &lt;- ironslag<span class="math inline">\(chemical
+# Y &lt;- ironslag\)</span>magnetic</h1>
+</div>
+<div id="n---lengthy" class="section level1">
+<h1>n &lt;- length(Y)</h1>
+</div>
+<div id="linear_model---functionx-y-lmy-x" class="section level1">
+<h1>linear_model &lt;- function(X, Y) { lm(Y ~ X) }</h1>
+</div>
+<div id="quadratic_model---functionx-y-lmy-polyx-2" class="section level1">
+<h1>quadratic_model &lt;- function(X, Y) { lm(Y ~ poly(X, 2)) }</h1>
+</div>
+<div id="cubic_model---functionx-y-lmy-polyx-3" class="section level1">
+<h1>cubic_model &lt;- function(X, Y) { lm(Y ~ poly(X, 3)) }</h1>
+</div>
+<div id="exponential_model---functionx-y-lmlogy-x" class="section level1">
+<h1>exponential_model &lt;- function(X, Y) { lm(log(Y) ~ X) }</h1>
+</div>
+<div id="cv_error---functionmodel" class="section level1">
+<h1>cv_error &lt;- function(model) {</h1>
+</div>
+<div id="errors---numericn" class="section level1">
+<h1>errors &lt;- numeric(n)</h1>
+</div>
+<div id="for-i-in-1n-1" class="section level1">
+<h1>for (i in 1:n) {</h1>
+</div>
+<div id="t---modelx-i-y-i" class="section level1">
+<h1>t &lt;- model(X[-i], Y[-i])</h1>
+</div>
+<div id="prediction---predictt-newdata-data.framex-xi" class="section level1">
+<h1>prediction &lt;- predict(t, newdata = data.frame(X = X[i]))</h1>
+</div>
+<div id="errorsi---yi---prediction2" class="section level1">
+<h1>errors[i] &lt;- (Y[i] - prediction)^2</h1>
+</div>
+<div id="section-47" class="section level1">
+<h1>}</h1>
+</div>
+<div id="returnmeanerrors" class="section level1">
+<h1>return(mean(errors))</h1>
+</div>
+<div id="section-48" class="section level1">
+<h1>}</h1>
+</div>
+<div id="expo_cv---functionmodel" class="section level1">
+<h1>expo_cv &lt;- function(model) {</h1>
+</div>
+<div id="errors---numericn-1" class="section level1">
+<h1>errors &lt;- numeric(n)</h1>
+</div>
+<div id="for-i-in-1n-2" class="section level1">
+<h1>for (i in 1:n) {</h1>
+</div>
+<div id="t---modelx-i-y-i-1" class="section level1">
+<h1>t &lt;- model(X[-i], Y[-i])</h1>
+</div>
+<div id="prediction---predictt-newdata-data.framex-xi-1" class="section level1">
+<h1>prediction &lt;- predict(t, newdata = data.frame(X = X[i]))</h1>
+</div>
+<div id="errorsi---yi---expprediction2" class="section level1">
+<h1>errors[i] &lt;- (Y[i] - exp(prediction))^2</h1>
+</div>
+<div id="section-49" class="section level1">
+<h1>}</h1>
+</div>
+<div id="returnmeanerrors-1" class="section level1">
+<h1>return(mean(errors))</h1>
+</div>
+<div id="section-50" class="section level1">
+<h1>}</h1>
+</div>
+<div id="linear_cv---cv_errorlinear_model" class="section level1">
+<h1>linear_cv &lt;- cv_error(linear_model)</h1>
+</div>
+<div id="quadratic_cv---cv_errorquadratic_model" class="section level1">
+<h1>quadratic_cv &lt;- cv_error(quadratic_model)</h1>
+</div>
+<div id="cubic_cv---cv_errorcubic_model" class="section level1">
+<h1>cubic_cv &lt;- cv_error(cubic_model)</h1>
+</div>
+<div id="exponential_cv---expo_cvexponential_model" class="section level1">
+<h1>exponential_cv &lt;- expo_cv(exponential_model)</h1>
+</div>
+<div id="catlinear-cv-error-linear_cv" class="section level1">
+<h1>cat(“Linear CV Error:”, linear_cv,“”)</h1>
+</div>
+<div id="catquadratic-cv-error-quadratic_cv" class="section level1">
+<h1>cat(“Quadratic CV Error”, quadratic_cv,“”)</h1>
+</div>
+<div id="catcubic-cv-error-cubic_cv" class="section level1">
+<h1>cat(“Cubic CV Error”, cubic_cv,“”)</h1>
+</div>
+<div id="catexpoential-cv-error-exponential_cv" class="section level1">
+<h1>cat(“Expoential CV Error”, exponential_cv,“”)</h1>
+</div>
+<div id="adj_r2---functionmodel" class="section level1">
+<h1>adj_r2 &lt;- function(model) {</h1>
+</div>
+<div id="returnsummarymodeladj.r.squared" class="section level1">
+<h1>return(summary(model)$adj.r.squared)</h1>
+</div>
+<div id="section-51" class="section level1">
+<h1>}</h1>
+</div>
+<div id="linear_r2---adj_r2lmy-x" class="section level1">
+<h1>linear_r2 &lt;- adj_r2(lm(Y ~ X))</h1>
+</div>
+<div id="quadratic_r2---adj_r2lmy-polyx-2" class="section level1">
+<h1>quadratic_r2 &lt;- adj_r2(lm(Y ~ poly(X, 2)))</h1>
+</div>
+<div id="cubic_r2---adj_r2lmy-polyx-3" class="section level1">
+<h1>cubic_r2 &lt;- adj_r2(lm(Y ~ poly(X, 3)))</h1>
+</div>
+<div id="exponential_r2---adj_r2lmlogy-x" class="section level1">
+<h1>exponential_r2 &lt;- adj_r2(lm(log(Y) ~ X))</h1>
+</div>
+<div id="catlinear-adjusted-r2-linear_r2" class="section level1">
+<h1>cat(“Linear Adjusted R^2”, linear_r2,“”)</h1>
+</div>
+<div id="catquadratic-adjusted-r2-quadratic_r2" class="section level1">
+<h1>cat(“Quadratic Adjusted R^2”, quadratic_r2,“”)</h1>
+</div>
+<div id="catcubic-adjusted-r2cubic_r2" class="section level1">
+<h1>cat(“Cubic Adjusted R^2”,cubic_r2,“”)</h1>
+</div>
+<div id="catexpoentical-adjusted-r2exponential_r2" class="section level1">
+<h1>cat(“Expoentical Adjusted R^2”,exponential_r2,“”)</h1>
+</div>
+<div id="根据例题7.18的方法应该选择qudratic的方法而根据adjusted-r2应该选择expoential" class="section level1">
+<h1>#根据例题7.18的方法应该选择Qudratic的方法，而根据adjusted
+R^2应该选择Expoential</h1>
+</div>
+<div id="的方法" class="section level1">
+<h1>#的方法</h1>
+</div>
+<div id="section-52" class="section level1">
+<h1>```</h1>
+</div>
+<div id="section-53" class="section level1">
+<h1>8.1</h1>
+</div>
+<div id="r-11" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="set.seed123-4" class="section level1">
+<h1>set.seed(123)</h1>
+</div>
+<div id="librarycramer" class="section level1">
+<h1>library(cramer)</h1>
+</div>
+<div id="attachchickwts" class="section level1">
+<h1>attach(chickwts)</h1>
+</div>
+<div id="x---sortas.vectorweightfeed-soybean" class="section level1">
+<h1>x &lt;- sort(as.vector(weight[feed == “soybean”]))</h1>
+</div>
+<div id="y---sortas.vectorweightfeed-linseed" class="section level1">
+<h1>y &lt;- sort(as.vector(weight[feed == “linseed”]))</h1>
+</div>
+<div id="detachchickwts" class="section level1">
+<h1>detach(chickwts)</h1>
+</div>
+<div id="cramer_von_mises--cramer.testx-ystatistic" class="section level1">
+<h1>cramer_von_mises&lt;- cramer.test(x, y)$statistic</h1>
+</div>
+<div id="permutation_test---functionx-y" class="section level1">
+<h1>permutation_test &lt;- function(x, y) {</h1>
+</div>
+<div id="data---cxy" class="section level1">
+<h1>data &lt;- c(x,y)</h1>
+</div>
+<div id="m---lengthx" class="section level1">
+<h1>m &lt;- length(x)</h1>
+</div>
+<div id="perm_stats---numeric1e3" class="section level1">
+<h1>perm_stats &lt;- numeric(1e3)</h1>
+</div>
+<div id="for-i-in-11e3" class="section level1">
+<h1>for (i in 1:1e3) {</h1>
+</div>
+<div id="data1---sampledatasizelengthdatareplace-false" class="section level1">
+<h1>data1 &lt;- sample(data,size=length(data),replace = FALSE)</h1>
+</div>
+<div id="t---data11m" class="section level1">
+<h1>t &lt;- data1[1:m]</h1>
+</div>
+<div id="w---data1m-1lengthdata" class="section level1">
+<h1>w &lt;- data1[(m + 1):length(data)]</h1>
+</div>
+<div id="perm_statsi---cramer.testt-wstatistic" class="section level1">
+<h1>perm_stats[i] &lt;- cramer.test(t, w)$statistic</h1>
+</div>
+<div id="section-54" class="section level1">
+<h1>}</h1>
+</div>
+<div id="p_value---meanperm_stats-cramer_von_mises" class="section level1">
+<h1>p_value &lt;- mean(perm_stats &gt;= cramer_von_mises)</h1>
+</div>
+<div id="returnp_value" class="section level1">
+<h1>return(p_value)</h1>
+</div>
+<div id="section-55" class="section level1">
+<h1>}</h1>
+</div>
+<div id="p_value---permutation_testx-y" class="section level1">
+<h1>p_value &lt;- permutation_test(x, y)</h1>
+</div>
+<div id="输出结果" class="section level1">
+<h1># 输出结果</h1>
+</div>
+<div id="catcramér-von-mises-test-statistic-cramer_von_mises" class="section level1">
+<h1>cat(“Cramér-von Mises Test Statistic:”, cramer_von_mises, “”)</h1>
+</div>
+<div id="catpermutation-test-p-value-p_value" class="section level1">
+<h1>cat(“Permutation Test P-value:”, p_value, “”)</h1>
+</div>
+<div id="section-56" class="section level1">
+<h1>```</h1>
+</div>
+<div id="section-57" class="section level1">
+<h1>8.2</h1>
+</div>
+<div id="r-12" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="由于题目没有给出参数故需要生成数据" class="section level1">
+<h1>#由于题目没有给出参数，故需要生成数据</h1>
+</div>
+<div id="set.seed123-5" class="section level1">
+<h1>set.seed(123)</h1>
+</div>
+<div id="x---rnorm100" class="section level1">
+<h1>x &lt;- rnorm(100)</h1>
+</div>
+<div id="y---0.5-x-rnorm100" class="section level1">
+<h1>y &lt;- 0.5 * x + rnorm(100)</h1>
+</div>
+<div id="cor0---corx-y-method-spearman" class="section level1">
+<h1>cor0 &lt;- cor(x, y, method = “spearman”)</h1>
+</div>
+<div id="r---1e4" class="section level1">
+<h1>R &lt;- 1e4</h1>
+</div>
+<div id="t---numericr" class="section level1">
+<h1>t &lt;- numeric(R)</h1>
+</div>
+<div id="for-i-in-1r" class="section level1">
+<h1>for (i in 1:R) {</h1>
+</div>
+<div id="w---sampleysizelengthyreplacefalse" class="section level1">
+<h1>w &lt;- sample(y,size=length(y),replace=FALSE)</h1>
+</div>
+<div id="计算打乱后的spearman秩相关系数" class="section level1">
+<h1># 计算打乱后的Spearman秩相关系数</h1>
+</div>
+<div id="ti---corx-w-method-spearman" class="section level1">
+<h1>t[i] &lt;- cor(x, w, method = “spearman”)</h1>
+</div>
+<div id="section-58" class="section level1">
+<h1>}</h1>
+</div>
+<div id="p_value---meant-cor0" class="section level1">
+<h1>p_value &lt;- mean(t &gt;= cor0)</h1>
+</div>
+<div id="catoriginal-spearman-correlation-cor0" class="section level1">
+<h1>cat(“Original Spearman correlation:”, cor0, “”)</h1>
+</div>
+<div id="catpermutation-test-p-value-p_value-1" class="section level1">
+<h1>cat(“Permutation test p-value:”, p_value, “”)</h1>
+</div>
+<div id="section-59" class="section level1">
+<h1>```</h1>
+</div>
+<div id="section-60" class="section level1">
+<h1>9.3</h1>
+</div>
+<div id="r-13" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="librarycoda" class="section level1">
+<h1>library(“coda”)</h1>
+</div>
+<div id="f---functionx" class="section level1">
+<h1>f &lt;- function(x) {</h1>
+</div>
+<div id="pi-1-x2" class="section level1">
+<h1>1 / (pi * (1 + x^2))</h1>
+</div>
+<div id="section-61" class="section level1">
+<h1>}</h1>
+</div>
+<div id="mh---functionn-s-d" class="section level1">
+<h1>mh &lt;- function(n, s, d) {</h1>
+</div>
+<div id="x---numericn" class="section level1">
+<h1>x &lt;- numeric(n)</h1>
+</div>
+<div id="x1---s" class="section level1">
+<h1>x[1] &lt;- s</h1>
+</div>
+<div id="for-i-in-2n" class="section level1">
+<h1>for (i in 2:n) {</h1>
+</div>
+<div id="p---xi---1-rt1-df-d" class="section level1">
+<h1>p &lt;- x[i - 1] + rt(1, df = d)</h1>
+</div>
+<div id="a---fp-fxi---1" class="section level1">
+<h1>a &lt;- f(p) / f(x[i - 1])</h1>
+</div>
+<div id="xi---ifelserunif1-a-p-xi---1" class="section level1">
+<h1>x[i] &lt;- ifelse(runif(1) &lt; a, p, x[i - 1])</h1>
+</div>
+<div id="section-62" class="section level1">
+<h1>}</h1>
+</div>
+<div id="x" class="section level1">
+<h1>x</h1>
+</div>
+<div id="section-63" class="section level1">
+<h1>}</h1>
+</div>
+<div id="set.seed123-6" class="section level1">
+<h1>set.seed(123)</h1>
+</div>
+<div id="n---1e5" class="section level1">
+<h1>n &lt;- 1e5</h1>
+</div>
+<div id="s---0" class="section level1">
+<h1>s &lt;- 0</h1>
+</div>
+<div id="d---1" class="section level1">
+<h1>d &lt;- 1</h1>
+</div>
+<div id="m---3" class="section level1">
+<h1>m &lt;- 3</h1>
+</div>
+<div id="b---1000" class="section level1">
+<h1>b &lt;- 1000</h1>
+</div>
+<div id="c---mcmc.listlapply1m-functioni-as.mcmcmhn-s-d" class="section level1">
+<h1>c &lt;- mcmc.list(lapply(1:m, function(i) as.mcmc(mh(n, s,
+d))))</h1>
+</div>
+<div id="g---gelman.diagc" class="section level1">
+<h1>g &lt;- gelman.diag(c)</h1>
+</div>
+<div id="printg" class="section level1">
+<h1>print(g)</h1>
+</div>
+<div id="catif-allgpsrf-1.2" class="section level1">
+<h1>cat(if (all(g$psrf &lt; 1.2)) {</h1>
+</div>
+<div id="chains-have-approximately-converged-r_hat-1.2." class="section level1">
+<h1>“Chains have approximately converged (R_hat &lt; 1.2).”</h1>
+</div>
+<div id="else-1" class="section level1">
+<h1>} else {</h1>
+</div>
+<div id="chains-have-not-yet-converged." class="section level1">
+<h1>“Chains have not yet converged.”</h1>
+</div>
+<div id="section-64" class="section level1">
+<h1>})</h1>
+</div>
+<div id="q---unlistlapplyc-functionch-ch-1b" class="section level1">
+<h1>q &lt;- unlist(lapply(c, function(ch) ch[-(1:b)]))</h1>
+</div>
+<div id="sq---quantileq-probs-seq0.1-0.9-by-0.1" class="section level1">
+<h1>sq &lt;- quantile(q, probs = seq(0.1, 0.9, by = 0.1))</h1>
+</div>
+<div id="tq---qcauchyseq0.1-0.9-by-0.1" class="section level1">
+<h1>tq &lt;- qcauchy(seq(0.1, 0.9, by = 0.1))</h1>
+</div>
+<div id="创建比较数据框并打印" class="section level1">
+<h1># 创建比较数据框并打印</h1>
+</div>
+<div id="cmp---data.frame" class="section level1">
+<h1>cmp &lt;- data.frame(</h1>
+</div>
+<div id="d-seq0.1-0.9-by-0.1" class="section level1">
+<h1>D = seq(0.1, 0.9, by = 0.1),</h1>
+</div>
+<div id="sq-sq" class="section level1">
+<h1>SQ = sq,</h1>
+</div>
+<div id="tq-tq" class="section level1">
+<h1>TQ = tq</h1>
+</div>
+<div id="section-65" class="section level1">
+<h1>)</h1>
+</div>
+<div id="printcmp" class="section level1">
+<h1>print(cmp)</h1>
+</div>
+<div id="plotsq-tq-main-sample-vs-theoretical-quantile" class="section level1">
+<h1>plot(sq, tq, main = “Sample vs Theoretical Quantile”,</h1>
+</div>
+<div id="xlab-sample-quantile-ylab-theoretical-quantile-pch-19" class="section level1">
+<h1>xlab = “Sample Quantile”, ylab = “Theoretical Quantile”, pch =
+19)</h1>
+</div>
+<div id="abline0-1-col-blue" class="section level1">
+<h1>abline(0, 1, col = “blue”)</h1>
+</div>
+<div id="r-14" class="section level1">
+<h1><code># 9.8 #</code>{r}</h1>
+</div>
+<div id="librarycoda-1" class="section level1">
+<h1>library(coda)</h1>
+</div>
+<div id="a---2" class="section level1">
+<h1>a &lt;- 2</h1>
+</div>
+<div id="b---2" class="section level1">
+<h1>b &lt;- 2</h1>
+</div>
+<div id="n---10" class="section level1">
+<h1>n &lt;- 10</h1>
+</div>
+<div id="u---1e5-样本数量" class="section level1">
+<h1>u &lt;- 1e5 # 样本数量</h1>
+</div>
+<div id="v---3-链的数量" class="section level1">
+<h1>v &lt;- 3 # 链的数量</h1>
+</div>
+<div id="generate_chain---functionu-n-a-b" class="section level1">
+<h1>generate_chain &lt;- function(u, n, a, b) {</h1>
+</div>
+<div id="x---0" class="section level1">
+<h1>x &lt;- 0</h1>
+</div>
+<div id="y---0.5" class="section level1">
+<h1>y &lt;- 0.5</h1>
+</div>
+<div id="t---matrix0-nrow-u-ncol-2" class="section level1">
+<h1>t &lt;- matrix(0, nrow = u, ncol = 2)</h1>
+</div>
+<div id="for-i-in-1u" class="section level1">
+<h1>for (i in 1:u) {</h1>
+</div>
+<div id="x---rbinom1-n-y" class="section level1">
+<h1>x &lt;- rbinom(1, n, y)</h1>
+</div>
+<div id="y---rbeta1-x-a-n---x-b" class="section level1">
+<h1>y &lt;- rbeta(1, x + a, n - x + b)</h1>
+</div>
+<div id="ti---cx-y" class="section level1">
+<h1>t[i, ] &lt;- c(x, y)</h1>
+</div>
+<div id="section-66" class="section level1">
+<h1>}</h1>
+</div>
+<div id="as.mcmct" class="section level1">
+<h1>as.mcmc(t)</h1>
+</div>
+<div id="section-67" class="section level1">
+<h1>}</h1>
+</div>
+<div id="chains---lapply1v-functioni-generate_chainu-n-a-b" class="section level1">
+<h1>chains &lt;- lapply(1:v, function(i) generate_chain(u, n, a,
+b))</h1>
+</div>
+<div id="gelman_diag---gelman.diagmcmc.listchains" class="section level1">
+<h1>gelman_diag &lt;- gelman.diag(mcmc.list(chains))</h1>
+</div>
+<div id="printgelman_diag" class="section level1">
+<h1>print(gelman_diag)</h1>
+</div>
+<div id="catif-allgelman_diagpsrf-1.2" class="section level1">
+<h1>cat(if (all(gelman_diag$psrf &lt; 1.2)) {</h1>
+</div>
+<div id="chains-have-approximately-converged." class="section level1">
+<h1>“Chains have approximately converged.”</h1>
+</div>
+<div id="else-2" class="section level1">
+<h1>} else {</h1>
+</div>
+<div id="chains-have-not-yet-converged.-1" class="section level1">
+<h1>“Chains have not yet converged.”</h1>
+</div>
+<div id="section-68" class="section level1">
+<h1>})</h1>
+</div>
+<div id="section-69" class="section level1">
+<h1>```</h1>
+</div>
+<div id="section-70" class="section level1">
+<h1>#11.3</h1>
+</div>
+<div id="r-15" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="section-71" class="section level1">
+<h1>#1.</h1>
+</div>
+<div id="librarypracma" class="section level1">
+<h1>library(pracma)</h1>
+</div>
+<div id="f---functiona-d-k" class="section level1">
+<h1>f &lt;- function(a, d, k) {</h1>
+</div>
+<div id="norm_a---sqrtsuma2" class="section level1">
+<h1>norm_a &lt;- sqrt(sum(a^2))</h1>
+</div>
+<div id="log_term_k----1k---lgammak-1---k-log2" class="section level1">
+<h1>log_term_k &lt;- (-1)^k - lgamma(k + 1) - k * log(2) +</h1>
+</div>
+<div id="k-2-lognorm_a---log2-k-1---log2-k-2" class="section level1">
+<h1>(2 * k + 2) * log(norm_a) - log(2 * k + 1) - log(2 * k + 2) +</h1>
+</div>
+<div id="lgammad-1-2-lgammak-3-2---lgammak-d-2-1" class="section level1">
+<h1>lgamma((d + 1) / 2) + lgamma(k + 3 / 2) - lgamma(k + d / 2 + 1)</h1>
+</div>
+<div id="term_k---explog_term_k" class="section level1">
+<h1>term_k &lt;- exp(log_term_k)</h1>
+</div>
+<div id="returnterm_k" class="section level1">
+<h1>return(term_k)</h1>
+</div>
+<div id="section-72" class="section level1">
+<h1>}</h1>
+</div>
+<div id="section-73" class="section level1">
+<h1>#2</h1>
+</div>
+<div id="g---functionadt" class="section level1">
+<h1>g &lt;- function(a,d,t){</h1>
+</div>
+<div id="s---0-1" class="section level1">
+<h1>s &lt;- 0</h1>
+</div>
+<div id="fork-in-0t" class="section level1">
+<h1>for(k in 0:t){</h1>
+</div>
+<div id="s--sfadk" class="section level1">
+<h1>s&lt;- s+f(a,d,k)</h1>
+</div>
+<div id="section-74" class="section level1">
+<h1>}</h1>
+</div>
+<div id="returns" class="section level1">
+<h1>return(s)</h1>
+</div>
+<div id="section-75" class="section level1">
+<h1>}</h1>
+</div>
+<div id="section-76" class="section level1">
+<h1>#3</h1>
+</div>
+<div id="a---c1-2" class="section level1">
+<h1>a &lt;- c(1, 2)</h1>
+</div>
+<div id="d---2" class="section level1">
+<h1>d &lt;- 2</h1>
+</div>
+<div id="t---1e3" class="section level1">
+<h1>t &lt;- 1e3</h1>
+</div>
+<div id="term_t---ga-d-t" class="section level1">
+<h1>term_t &lt;- g(a, d, t)</h1>
+</div>
+<div id="cat前-t-项的和为-term_t" class="section level1">
+<h1>cat(“前”, t, “项的和为:”, term_t, “”)</h1>
+</div>
+<div id="section-77" class="section level1">
+<h1>```</h1>
+</div>
+<div id="section-78" class="section level1">
+<h1>#11.5</h1>
+</div>
+<div id="r-16" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="librarypracma-1" class="section level1">
+<h1>library(pracma)</h1>
+</div>
+<div id="h---functionu-k" class="section level1">
+<h1>h &lt;- function(u, k) {</h1>
+</div>
+<div id="u2-k---1-k-2" class="section level1">
+<h1>(1 + u^2 / (k - 1))^(-k/ 2)</h1>
+</div>
+<div id="section-79" class="section level1">
+<h1>}</h1>
+</div>
+<div id="g---functionk-a" class="section level1">
+<h1>g &lt;- function(k, a) {</h1>
+</div>
+<div id="sqrta2-k-k-1---a2" class="section level1">
+<h1>sqrt(a^2 * k / (k + 1 - a^2))</h1>
+</div>
+<div id="section-80" class="section level1">
+<h1>}</h1>
+</div>
+<div id="j---functionk-a" class="section level1">
+<h1>j &lt;- function(k, a) {</h1>
+</div>
+<div id="c---gk---1-a" class="section level1">
+<h1>c &lt;- g(k - 1, a)</h1>
+</div>
+<div id="sqrtpi-k---1-explgammak-2---lgammak---1-2" class="section level1">
+<h1>2 / sqrt(pi * (k - 1)) * exp(lgamma(k / 2) - lgamma((k - 1) / 2))
+*</h1>
+</div>
+<div id="integratefunctionu-hu-k-lower-0-upper-cvalue" class="section level1">
+<h1>integrate(function(u) h(u, k), lower = 0, upper = c)$value</h1>
+</div>
+<div id="section-81" class="section level1">
+<h1>}</h1>
+</div>
+<div id="f---functiona-k" class="section level1">
+<h1>f &lt;- function(a, k) {</h1>
+</div>
+<div id="l---jk-a" class="section level1">
+<h1>l &lt;- j(k, a)</h1>
+</div>
+<div id="r---jk-1-a" class="section level1">
+<h1>r &lt;- j(k + 1, a)</h1>
+</div>
+<div id="l---r" class="section level1">
+<h1>l - r</h1>
+</div>
+<div id="section-82" class="section level1">
+<h1>}</h1>
+</div>
+<div id="定义主函数-s用于求解方程" class="section level1">
+<h1># 定义主函数 s，用于求解方程</h1>
+</div>
+<div id="s---functionk-e" class="section level1">
+<h1>s &lt;- function(k, e) {</h1>
+</div>
+<div id="if-f0.1-k-0-fsqrtk3-e-k-0-f0.1-k-0-fsqrtk3-e-k-0" class="section level1">
+<h1>if ((f(0.1, k) &lt; 0 &amp;&amp; f(sqrt(k/3-e) , k) &gt; 0) ||
+(f(0.1, k) &gt; 0 &amp;&amp; f(sqrt(k/3-e) , k) &lt; 0)) {</h1>
+</div>
+<div id="root---unirootfunctiona-fa-k-interval-ce-sqrtk3---etoleroot" class="section level1">
+<h1>root &lt;- uniroot(function(a) f(a, k), interval = c(e, sqrt(k/3) -
+e),tol=e)$root</h1>
+</div>
+<div id="else-3" class="section level1">
+<h1>} else {</h1>
+</div>
+<div id="root---na" class="section level1">
+<h1>root &lt;- NA</h1>
+</div>
+<div id="section-83" class="section level1">
+<h1>}</h1>
+</div>
+<div id="returnroot" class="section level1">
+<h1>return(root)</h1>
+</div>
+<div id="section-84" class="section level1">
+<h1>}</h1>
+</div>
+<div id="k---18" class="section level1">
+<h1>k &lt;- 18</h1>
+</div>
+<div id="e---1e-2" class="section level1">
+<h1>e &lt;- 1e-2</h1>
+</div>
+<div id="x---seqe-sqrtk---e-0.01" class="section level1">
+<h1>x &lt;- seq(e, sqrt(k) - e, 0.01)</h1>
+</div>
+<div id="printsk-e" class="section level1">
+<h1>print(s(k, e))</h1>
+</div>
+<div id="plotx-sapplyx-functiona-fa-k-type-l-main-pastefa-for-k-k" class="section level1">
+<h1>plot(x, sapply(x, function(a) f(a, k)), type = “l”, main =
+paste(“f(a) for k =”, k),</h1>
+</div>
+<div id="xlab-a-ylab-fa" class="section level1">
+<h1>xlab = “a”, ylab = “f(a)”)</h1>
+</div>
+<div id="补充-r" class="section level1">
+<h1><code># #补充 #</code>{r}</h1>
+</div>
+<div id="t---1" class="section level1">
+<h1>t &lt;- 1</h1>
+</div>
+<div id="data---c0.54-0.48-0.33-0.43-1.00-0.91-1.00-0.21-0.85" class="section level1">
+<h1>data &lt;- c(0.54, 0.48, 0.33, 0.43, 1.00, 0.91, 1.00, 0.21,
+0.85)</h1>
+</div>
+<div id="n---lengthdata-1" class="section level1">
+<h1>n &lt;- length(data)</h1>
+</div>
+<div id="lambda---1" class="section level1">
+<h1>lambda &lt;- 1</h1>
+</div>
+<div id="eps---1e-6" class="section level1">
+<h1>eps &lt;- 1e-6</h1>
+</div>
+<div id="m---1e3-1" class="section level1">
+<h1>m &lt;- 1e3</h1>
+</div>
+<div id="is_censored---data-t" class="section level1">
+<h1>is_censored &lt;- data == t</h1>
+</div>
+<div id="for-k-in-1m" class="section level1">
+<h1>for (k in 1:m) {</h1>
+</div>
+<div id="expected_values---ifelseis_censored-t-1-lambda-data" class="section level1">
+<h1>expected_values &lt;- ifelse(is_censored, t + 1 / lambda, data)</h1>
+</div>
+<div id="new_lambda---n-sumexpected_values" class="section level1">
+<h1>new_lambda &lt;- n / sum(expected_values)</h1>
+</div>
+<div id="if-absnew_lambda---lambda-eps" class="section level1">
+<h1>if (abs(new_lambda - lambda) &lt; eps) {</h1>
+</div>
+<div id="cat收敛于迭代-k-次" class="section level1">
+<h1>cat(“收敛于迭代”, k, “次”)</h1>
+</div>
+<div id="break" class="section level1">
+<h1>break</h1>
+</div>
+<div id="section-85" class="section level1">
+<h1>}</h1>
+</div>
+<div id="lambda---new_lambda" class="section level1">
+<h1>lambda &lt;- new_lambda</h1>
+</div>
+<div id="section-86" class="section level1">
+<h1>}</h1>
+</div>
+<div id="cat估计的-lambda-lambda" class="section level1">
+<h1>cat(“估计的 lambda:”, lambda, “”)</h1>
+</div>
+<div id="mle_lambda---n-sumdata" class="section level1">
+<h1>mle_lambda &lt;- n / sum(data)</h1>
+</div>
+<div id="cat观测数据的-mle-估计的-lambda-mle_lambda" class="section level1">
+<h1>cat(“观测数据的 MLE 估计的 lambda:”, mle_lambda, “”)</h1>
+</div>
+<div id="section-87" class="section level1">
+<h1>```</h1>
+</div>
+<div id="section-88" class="section level1">
+<h1>11.7</h1>
+</div>
+<div id="r-libraryboot-a1---rbindc211c1-13-b1---c23-a---c429-simplexa-a-a1-a1-b1-b1maxi-true" class="section level1">
+<h1><code>{r} # library(boot) # A1 &lt;- rbind(c(2,1,1),c(1,-1,3)) # b1 &lt;- c(2,3) # a &lt;- c(4,2,9) # simplex(a = a, A1 = A1, b1 = b1,maxi = TRUE ) #</code></h1>
+</div>
+<div id="p.204" class="section level1">
+<h1>P.204</h1>
+</div>
+<div id="use-both-for-loops-and-lapply-to-fit-linear-models-to-the" class="section level1">
+<h1>3.Use both for loops and lapply() to fit linear models to the</h1>
+</div>
+<div id="mtcars-using-the-formulas-stored-in-this-list" class="section level1">
+<h1>mtcars using the formulas stored in this list:</h1>
+</div>
+<div id="r-17" class="section level1">
+<h1>```{R}</h1>
+</div>
+<div id="formulas---list" class="section level1">
+<h1>formulas &lt;- list(</h1>
+</div>
+<div id="mpg-disp" class="section level1">
+<h1>mpg ~ disp,</h1>
+</div>
+<div id="mpg-i1-disp" class="section level1">
+<h1>mpg ~ I(1 / disp),</h1>
+</div>
+<div id="mpg-disp-wt" class="section level1">
+<h1>mpg ~ disp + wt,</h1>
+</div>
+<div id="mpg-i1-disp-wt" class="section level1">
+<h1>mpg ~ I(1 / disp) + wt</h1>
+</div>
+<div id="section-89" class="section level1">
+<h1>)</h1>
+</div>
+<div id="model_for1---vectorlistlength-4" class="section level1">
+<h1>model_for1 &lt;- vector(“list”,length = 4)</h1>
+</div>
+<div id="for-i-in-seq_alongformulas" class="section level1">
+<h1>for (i in seq_along(formulas)) {</h1>
+</div>
+<div id="model_for1i---lmformulasi-data-mtcars" class="section level1">
+<h1>model_for1[[i]] &lt;- lm(formulas[[i]], data = mtcars)</h1>
+</div>
+<div id="section-90" class="section level1">
+<h1>}</h1>
+</div>
+<div id="model_lapply1---lapplyformulas-lm-data-mtcars" class="section level1">
+<h1>model_lapply1 &lt;- lapply(formulas, lm ,data = mtcars)</h1>
+</div>
+<div id="section-91" class="section level1">
+<h1>```</h1>
+</div>
+<div id="fit-the-model-mpg-disp-to-each-of-the-bootstrap-replicates" class="section level1">
+<h1>4.Fit the model mpg ~ disp to each of the bootstrap replicates</h1>
+</div>
+<div id="of-mtcars-in-the-list-below-by-using-a-for-loop-and-lapply." class="section level1">
+<h1>of mtcars in the list below by using a for loop and lapply().</h1>
+</div>
+<div id="can-you-do-it-without-an-anonymous-function" class="section level1">
+<h1>Can you do it without an anonymous function?</h1>
+</div>
+<div id="r-18" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="bootstraps---lapply110-functioni" class="section level1">
+<h1>bootstraps &lt;- lapply(1:10, function(i) {</h1>
+</div>
+<div id="rows---sample1nrowmtcars-rep-true" class="section level1">
+<h1>rows &lt;- sample(1:nrow(mtcars), rep = TRUE)</h1>
+</div>
+<div id="mtcarsrows" class="section level1">
+<h1>mtcars[rows, ]</h1>
+</div>
+<div id="section-92" class="section level1">
+<h1>})</h1>
+</div>
+<div id="model_for2---list" class="section level1">
+<h1>model_for2 &lt;- list()</h1>
+</div>
+<div id="for-i-in-seq_alongbootstraps" class="section level1">
+<h1>for (i in seq_along(bootstraps)) {</h1>
+</div>
+<div id="model_for2i---lmmpg-disp-data-bootstrapsi" class="section level1">
+<h1>model_for2[[i]] &lt;- lm(mpg ~ disp, data = bootstraps[[i]])</h1>
+</div>
+<div id="section-93" class="section level1">
+<h1>}</h1>
+</div>
+<div id="model_lapply2---lapplybootstraps-lm-formula-mpg-disp" class="section level1">
+<h1>model_lapply2 &lt;- lapply(bootstraps, lm, formula = mpg ~
+disp)</h1>
+</div>
+<div id="section-94" class="section level1">
+<h1>```</h1>
+</div>
+<div id="for-each-model-in-the-previous-two-exercises-extract-r2-using" class="section level1">
+<h1>5.For each model in the previous two exercises, extract R2
+using</h1>
+</div>
+<div id="the-function-below." class="section level1">
+<h1>the function below.</h1>
+</div>
+<div id="r-19" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="rsq---functionmod-summarymodr.squared" class="section level1">
+<h1>rsq &lt;- function(mod) summary(mod)$r.squared</h1>
+</div>
+<div id="rsquare_for1---lapplymodel_for1-functionmodel_for1-rsqmodel_for1" class="section level1">
+<h1>rsquare_for1 &lt;- lapply(model_for1, function(model_for1)
+rsq(model_for1))</h1>
+</div>
+<div id="rsquare_lapply1---lapplymodel_lapply1-functionmodel_lapply1-rsqmodel_lapply1" class="section level1">
+<h1>rsquare_lapply1 &lt;- lapply(model_lapply1, function(model_lapply1)
+rsq(model_lapply1))</h1>
+</div>
+<div id="rsquare_for2---lapplymodel_for2-functionmodel_for2-rsqmodel_for2" class="section level1">
+<h1>rsquare_for2 &lt;- lapply(model_for2, function(model_for2)
+rsq(model_for2))</h1>
+</div>
+<div id="rsquare_lapply2---lapplymodel_lapply2-functionmodel_lapply2-rsqmodel_lapply2" class="section level1">
+<h1>rsquare_lapply2 &lt;- lapply(model_lapply2, function(model_lapply2)
+rsq(model_lapply2))</h1>
+</div>
+<div id="section-95" class="section level1">
+<h1>```</h1>
+</div>
+<div id="p213-214" class="section level1">
+<h1>P213-214</h1>
+</div>
+<div id="section-96" class="section level1">
+<h1>3.</h1>
+</div>
+<div id="r-20" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="trials---replicate" class="section level1">
+<h1>trials &lt;- replicate(</h1>
+</div>
+<div id="section-97" class="section level1">
+<h1>100,</h1>
+</div>
+<div id="t.testrpois10-10-rpois7-10" class="section level1">
+<h1>t.test(rpois(10, 10), rpois(7, 10)),</h1>
+</div>
+<div id="simplify-false" class="section level1">
+<h1>simplify = FALSE</h1>
+</div>
+<div id="section-98" class="section level1">
+<h1>)</h1>
+</div>
+<div id="p_value---sapplytrials-functionx-xp.value" class="section level1">
+<h1>p_value &lt;- sapply(trials, function(x) x$p.value)</h1>
+</div>
+<div id="printp_value" class="section level1">
+<h1>print(p_value)</h1>
+</div>
+<div id="r-21" class="section level1">
+<h1><code># 6. #</code>{r}</h1>
+</div>
+<div id="x为输入的list" class="section level1">
+<h1>#x为输入的list</h1>
+</div>
+<div id="map_vapply---functionf-x-fun.value-null" class="section level1">
+<h1>map_vapply &lt;- function(f, x, FUN.VALUE = NULL) {</h1>
+</div>
+<div id="使用-map-对-x-应用函数-f" class="section level1">
+<h1># 使用 Map 对 x 应用函数 f</h1>
+</div>
+<div id="t---mapf-x" class="section level1">
+<h1>t &lt;- Map(f, x)</h1>
+</div>
+<div id="如果-fun.value-未定义则动态推断" class="section level1">
+<h1># 如果 FUN.VALUE 未定义，则动态推断</h1>
+</div>
+<div id="if-is.nullfun.value" class="section level1">
+<h1>if (is.null(FUN.VALUE)) {</h1>
+</div>
+<div id="test_result---t1" class="section level1">
+<h1>test_result &lt;- t[[1]]</h1>
+</div>
+<div id="if-is.numerictest_result" class="section level1">
+<h1>if (is.numeric(test_result)) {</h1>
+</div>
+<div id="fun.value---numericlengthtest_result" class="section level1">
+<h1>FUN.VALUE &lt;- numeric(length(test_result))</h1>
+</div>
+<div id="else-if-is.charactertest_result" class="section level1">
+<h1>} else if (is.character(test_result)) {</h1>
+</div>
+<div id="fun.value---characterlengthtest_result" class="section level1">
+<h1>FUN.VALUE &lt;- character(length(test_result))</h1>
+</div>
+<div id="else-if-is.logicaltest_result" class="section level1">
+<h1>} else if (is.logical(test_result)) {</h1>
+</div>
+<div id="fun.value---logicallengthtest_result" class="section level1">
+<h1>FUN.VALUE &lt;- logical(length(test_result))</h1>
+</div>
+<div id="else-4" class="section level1">
+<h1>} else {</h1>
+</div>
+<div id="stopunsupported-return-type.-please-specify-fun.value-explicitly." class="section level1">
+<h1>stop(“Unsupported return type. Please specify FUN.VALUE
+explicitly.”)</h1>
+</div>
+<div id="section-99" class="section level1">
+<h1>}</h1>
+</div>
+<div id="section-100" class="section level1">
+<h1>}</h1>
+</div>
+<div id="vapplyseq_alongt-functioni-ti-fun.value" class="section level1">
+<h1>vapply(seq_along(t), function(i) t[[i]], FUN.VALUE)</h1>
+</div>
+<div id="section-101" class="section level1">
+<h1>}</h1>
+</div>
+<div id="lst---listmatrix14-2-2-matrix58-2-2" class="section level1">
+<h1>lst &lt;- list(matrix(1:4, 2, 2), matrix(5:8, 2, 2))</h1>
+</div>
+<div id="result---map_vapplyfunctiony-ty-lst" class="section level1">
+<h1>result &lt;- map_vapply(function(y) t(y), lst)</h1>
+</div>
+<div id="printresult" class="section level1">
+<h1>print(result)</h1>
+</div>
+<div id="make-a-faster-version-of-chisq.test-that-only-computes-the-chi-square-test-statistic-when-the-input-is-two-numeric-vectors-with-no-missing-values.-you-can-try-simplifying-chisq.test-or-by-coding-from-the-mathematical-definition-httpen.-wikipedia.orgwikipearson27s_chi-squared_test.-r" class="section level1">
+<h1><code># 4.Make a faster version of chisq.test() that only computes the # chi-square test statistic when the input is two numeric vectors # with no missing values. You can try simplifying chisq.test() # or by coding from the mathematical definition (http://en. # wikipedia.org/wiki/Pearson%27s_chi-squared_test). #</code>{r}</h1>
+</div>
+<div id="fast_chisq_test---functionx-y" class="section level1">
+<h1>fast_chisq_test &lt;- function(x, y) {</h1>
+</div>
+<div id="obs---tablex-y" class="section level1">
+<h1>obs &lt;- table(x, y)</h1>
+</div>
+<div id="x---rowsumsobs" class="section level1">
+<h1>x &lt;- rowSums(obs)</h1>
+</div>
+<div id="y---colsumsobs" class="section level1">
+<h1>y &lt;- colSums(obs)</h1>
+</div>
+<div id="u---sumobs" class="section level1">
+<h1>u &lt;- sum(obs)</h1>
+</div>
+<div id="v---outerx-y-u" class="section level1">
+<h1>v &lt;- outer(x, y) / u</h1>
+</div>
+<div id="chisq_stat---sumobs---v2-v" class="section level1">
+<h1>chisq_stat &lt;- sum((obs - v)^2 / v)</h1>
+</div>
+<div id="returnchisq_stat" class="section level1">
+<h1>return(chisq_stat)</h1>
+</div>
+<div id="section-102" class="section level1">
+<h1>}</h1>
+</div>
+<div id="x---c1-2-5-7-11-13-17-19-23" class="section level1">
+<h1>x &lt;- c(1, 2, 5, 7, 11, 13, 17, 19, 23)</h1>
+</div>
+<div id="y---c1-2-3-4-5-6-7-8-9" class="section level1">
+<h1>y &lt;- c(1, 2, 3, 4, 5, 6, 7, 8, 9)</h1>
+</div>
+<div id="测试" class="section level1">
+<h1>#测试</h1>
+</div>
+<div id="chisq_stat---fast_chisq_testx-y" class="section level1">
+<h1>chisq_stat &lt;- fast_chisq_test(x, y)</h1>
+</div>
+<div id="printchisq_stat" class="section level1">
+<h1>print(chisq_stat)</h1>
+</div>
+<div id="section-103" class="section level1">
+<h1>```</h1>
+</div>
+<div id="can-you-make-a-faster-version-of-table-for-the-case-of-an" class="section level1">
+<h1>5.Can you make a faster version of table() for the case of an</h1>
+</div>
+<div id="advanced-r" class="section level1">
+<h1>366 Advanced R</h1>
+</div>
+<div id="input-of-two-integer-vectors-with-no-missing-values-can-you" class="section level1">
+<h1>input of two integer vectors with no missing values? Can you</h1>
+</div>
+<div id="use-it-to-speed-up-your-chi-square-test" class="section level1">
+<h1>use it to speed up your chi-square test?</h1>
+</div>
+<div id="r-22" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="f---functionx-y" class="section level1">
+<h1>f &lt;- function(x, y) {</h1>
+</div>
+<div id="u---uniquex" class="section level1">
+<h1>u &lt;- unique(x)</h1>
+</div>
+<div id="v---uniquey" class="section level1">
+<h1>v &lt;- unique(y)</h1>
+</div>
+<div id="freq---matrix0-nrow-lengthu-ncol-lengthv" class="section level1">
+<h1>freq &lt;- matrix(0, nrow = length(u), ncol = length(v),</h1>
+</div>
+<div id="dimnames-listu-v" class="section level1">
+<h1>dimnames = list(u, v))</h1>
+</div>
+<div id="for-i-in-seq_alongx" class="section level1">
+<h1>for (i in seq_along(x)) {</h1>
+</div>
+<div id="freqas.characterxi-as.characteryi--" class="section level1">
+<h1>freq[as.character(x[i]), as.character(y[i])] &lt;-</h1>
+</div>
+<div id="freqas.characterxi-as.characteryi-1" class="section level1">
+<h1>freq[as.character(x[i]), as.character(y[i])] + 1</h1>
+</div>
+<div id="section-104" class="section level1">
+<h1>}</h1>
+</div>
+<div id="returnfreq" class="section level1">
+<h1>return(freq)</h1>
+</div>
+<div id="section-105" class="section level1">
+<h1>}</h1>
+</div>
+<div id="测试-1" class="section level1">
+<h1># 测试</h1>
+</div>
+<div id="x---c1-2-3-4-5-6-7" class="section level1">
+<h1>x &lt;- c(1, 2, 3, 4, 5, 6, 7)</h1>
+</div>
+<div id="y---c1-2-1-2-1-2-2" class="section level1">
+<h1>y &lt;- c(1, 2, 1, 2, 1, 2, 2)</h1>
+</div>
+<div id="result---fx-y" class="section level1">
+<h1>result &lt;- f(x, y)</h1>
+</div>
+<div id="printresult-1" class="section level1">
+<h1>print(result)</h1>
+</div>
+<div id="section-106" class="section level1">
+<h1>```</h1>
+</div>
+<div id="r-23" class="section level1">
+<h1>```{r}</h1>
+</div>
+<div id="libraryrcpp" class="section level1">
+<h1>library(Rcpp)</h1>
+</div>
+<div id="librarymicrobenchmark" class="section level1">
+<h1>library(microbenchmark)</h1>
+</div>
+<div id="libraryggplot2" class="section level1">
+<h1>library(ggplot2)</h1>
+</div>
+<div id="set.seed123-7" class="section level1">
+<h1>#set.seed(123)</h1>
+</div>
+<div id="sourcecppgibbssamplercpp.cpp" class="section level1">
+<h1>#sourceCpp(“gibbsSamplerCpp.cpp”)</h1>
+</div>
+<div id="gibbssamplerr---functioni-n-a-b-x0-y0" class="section level1">
+<h1>#gibbsSamplerR &lt;- function(i, N, a, b, x0, y0) {</h1>
+</div>
+<div id="x_samples---integeri" class="section level1">
+<h1># x_samples &lt;- integer(i)</h1>
+</div>
+<div id="y_samples---numerici" class="section level1">
+<h1># y_samples &lt;- numeric(i)</h1>
+</div>
+<div id="x---x0" class="section level1">
+<h1># x &lt;- x0</h1>
+</div>
+<div id="y---y0" class="section level1">
+<h1># y &lt;- y0</h1>
+</div>
+<div id="for-j-in-1i" class="section level1">
+<h1># for (j in 1:i) {</h1>
+</div>
+<div id="x---rbinom1-n-y-1" class="section level1">
+<h1># x &lt;- rbinom(1, N, y)</h1>
+</div>
+<div id="y---rbeta1-x-a-n---x-b-1" class="section level1">
+<h1># y &lt;- rbeta(1, x + a, N - x + b)</h1>
+</div>
+<div id="x_samplesj---x" class="section level1">
+<h1># x_samples[j] &lt;- x</h1>
+</div>
+<div id="y_samplesj---y" class="section level1">
+<h1># y_samples[j] &lt;- y</h1>
+</div>
+<div id="section-107" class="section level1">
+<h1># }</h1>
+</div>
+<div id="listx-x_samples-y-y_samples" class="section level1">
+<h1># list(x = x_samples, y = y_samples)</h1>
+</div>
+<div id="section-108" class="section level1">
+<h1>#}</h1>
+</div>
+<div id="i---1e4" class="section level1">
+<h1>#i &lt;- 1e4</h1>
+</div>
+<div id="n---10-1" class="section level1">
+<h1>#N &lt;- 10</h1>
+</div>
+<div id="a---3" class="section level1">
+<h1>#a &lt;- 3</h1>
+</div>
+<div id="b---4" class="section level1">
+<h1>#b &lt;- 4</h1>
+</div>
+<div id="x0---5" class="section level1">
+<h1>#x0 &lt;- 5</h1>
+</div>
+<div id="y0---1" class="section level1">
+<h1>#y0 &lt;- 1</h1>
+</div>
+<div id="samples_r---gibbssamplerri-n-a-b-x0-y0" class="section level1">
+<h1>#samples_R &lt;- gibbsSamplerR(i, N, a, b, x0, y0)</h1>
+</div>
+<div id="samples_rcpp---gibbssamplercppi-n-a-b-x0-y0" class="section level1">
+<h1>#samples_Rcpp &lt;- gibbsSamplerCpp(i, N, a, b, x0, y0)</h1>
+</div>
+<div id="x_r---samples_rx-y_r---samples_ry" class="section level1">
+<h1>#x_R &lt;- samples_R<span class="math inline">\(x
+# #y_R &lt;- samples_R\)</span>y</h1>
+</div>
+<div id="x_rcpp---samples_rcppx-y_rcpp---samples_rcppy" class="section level1">
+<h1>#x_Rcpp &lt;- samples_Rcpp<span class="math inline">\(x
+# #y_Rcpp &lt;- samples_Rcpp\)</span>y</h1>
+</div>
+<div id="parmfrow-c1-2" class="section level1">
+<h1>#par(mfrow = c(1, 2))</h1>
+</div>
+<div id="qqplotx_r-x_rcpp" class="section level1">
+<h1>#qqplot(x_R, x_Rcpp,</h1>
+</div>
+<div id="main-qq-plot-of-x-r-vs-rcpp" class="section level1">
+<h1># main = “QQ Plot of x (R vs Rcpp)”,</h1>
+</div>
+<div id="xlab-r-samples-ylab-rcpp-samples" class="section level1">
+<h1># xlab = “R Samples”, ylab = “Rcpp Samples”)</h1>
+</div>
+<div id="abline0-1-col-red" class="section level1">
+<h1>#abline(0, 1, col = “red”)</h1>
+</div>
+<div id="qqploty_r-y_rcpp" class="section level1">
+<h1>#qqplot(y_R, y_Rcpp,</h1>
+</div>
+<div id="main-qq-plot-of-y-r-vs-rcpp" class="section level1">
+<h1># main = “QQ Plot of y (R vs Rcpp)”,</h1>
+</div>
+<div id="xlab-r-samples-ylab-rcpp-samples-1" class="section level1">
+<h1># xlab = “R Samples”, ylab = “Rcpp Samples”)</h1>
+</div>
+<div id="abline0-1-col-red-1" class="section level1">
+<h1>#abline(0, 1, col = “red”)</h1>
+</div>
+<div id="i_b---5000" class="section level1">
+<h1>#i_b &lt;- 5000</h1>
+</div>
+<div id="benchmark_results---microbenchmark" class="section level1">
+<h1>#benchmark_results &lt;- microbenchmark(</h1>
+</div>
+<div id="r-gibbssamplerri_b-n-a-b-x0-y0" class="section level1">
+<h1># R = gibbsSamplerR(i_b, N, a, b, x0, y0),</h1>
+</div>
+<div id="rcpp-gibbssamplercppi_b-n-a-b-x0-y0" class="section level1">
+<h1># Rcpp = gibbsSamplerCpp(i_b, N, a, b, x0, y0),</h1>
+</div>
+<div id="times-10" class="section level1">
+<h1># times = 10</h1>
+</div>
+<div id="section-109" class="section level1">
+<h1>#)</h1>
+</div>
+<div id="printbenchmark_results" class="section level1">
+<h1>#print(benchmark_results)</h1>
+</div>
+<div id="autoplotbenchmark_results" class="section level1">
+<h1>#autoplot(benchmark_results)</h1>
+</div>
+<div id="section-110" class="section level1">
+<h1>```</h1>
+</div>
+<div id="include-rcpp.h" class="section level1">
+<h1>#include &lt;Rcpp.h&gt;</h1>
+</div>
+<div id="using-namespace-rcpp" class="section level1">
+<h1>#using namespace Rcpp;</h1>
+</div>
+<div id="rcppexport" class="section level1">
+<h1>#// [[Rcpp::export]]</h1>
+</div>
+<div id="list-gibbssamplercppint-n_iter-int-n-double-a-double-b-int-x_init-double-y_init" class="section level1">
+<h1>#List gibbsSamplerCpp(int n_iter, int n, double a, double b, int
+x_init, double y_init) {</h1>
+</div>
+<div id="初始化采样存储向量" class="section level1">
+<h1># // 初始化采样存储向量</h1>
+</div>
+<div id="integervector-x_samplesn_iter" class="section level1">
+<h1># IntegerVector x_samples(n_iter);</h1>
+</div>
+<div id="numericvector-y_samplesn_iter" class="section level1">
+<h1># NumericVector y_samples(n_iter);</h1>
+</div>
+<div id="初始化x和y" class="section level1">
+<h1># // 初始化x和y</h1>
+</div>
+<div id="int-x-x_init" class="section level1">
+<h1># int x = x_init;</h1>
+</div>
+<div id="double-y-y_init" class="section level1">
+<h1># double y = y_init;</h1>
+</div>
+<div id="采样循环" class="section level1">
+<h1># // 采样循环</h1>
+</div>
+<div id="for-int-i-0-i-n_iter-i" class="section level1">
+<h1># for (int i = 0; i &lt; n_iter; ++i) {</h1>
+</div>
+<div id="从条件分布-x-y-binomialn-y-采样" class="section level1">
+<h1># // 从条件分布 x | y ~ Binomial(n, y) 采样</h1>
+</div>
+<div id="x-rrbinomn-y" class="section level1">
+<h1># x = R::rbinom(n, y);</h1>
+</div>
+<div id="从条件分布-y-x-betax-a-n---x-b-采样" class="section level1">
+<h1># // 从条件分布 y | x ~ Beta(x + a, n - x + b) 采样</h1>
+</div>
+<div id="y-rrbetax-a-n---x-b" class="section level1">
+<h1># y = R::rbeta(x + a, n - x + b);</h1>
+</div>
+<div id="存储当前采样" class="section level1">
+<h1># // 存储当前采样</h1>
+</div>
+<div id="x_samplesi-x" class="section level1">
+<h1># x_samples[i] = x;</h1>
+</div>
+<div id="y_samplesi-y" class="section level1">
+<h1># y_samples[i] = y;</h1>
+</div>
+<div id="section-111" class="section level1">
+<h1># }</h1>
+</div>
+<div id="返回结果" class="section level1">
+<h1># // 返回结果</h1>
+</div>
+<div id="return-listcreatenamedx-x_samples-namedy-y_samples" class="section level1">
+<h1># return List::create(Named(“x”) = x_samples, Named(“y”) =
+y_samples);</h1>
+</div>
+<div id="section-112" class="section level1">
+<h1>#}</h1>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

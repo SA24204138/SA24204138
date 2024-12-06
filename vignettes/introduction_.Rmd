@@ -1,0 +1,50 @@
+---
+title: "Introduction to SA24204138"
+author: "SA24204138"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{De-biased Sparse PCA}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction
+
+本r包的方法来自于论文De-Biased Sparse PCA: Inference for Eigenstructure of Large Covariance Matrices。文章的主要工作是在稀疏条件下对于特征结构的的渐近正态估计以及对于回归问题
+$$
+\min_{\beta} \| Y - X\beta \|^2 + \lambda \|\beta\|_1
+$$
+参数$$\beta$$在l2范数下以
+$$
+\| \beta - \beta^* \|_2 = O\left( \sqrt{\frac{\log p}{n}} \right)
+$$
+的速度收敛。该估计器存在渐近偏差，因此我们识别了偏差项，并提出了一种方法来估计该偏差，从而得到去偏估计器。本r包正是基于其所证明的去偏估计以及论文中的伪代码所编写的r包。论文把算法分为两个部分，一个部分是根据误差的黑塞矩阵，使用nodewise lasso的方法来估计约束条件（$$\lambda$$,T）：
+$$
+f(\gamma_j) := \Gamma_j^T A \Gamma_j + \lambda_j \|\gamma_j\|_1\quad\{\gamma_j \in \mathbb{R}^{p-1} : \|\gamma_j\|_1 \leq T_j \}.
+$$
+矩阵A初始是任意矩阵，而在迭代过程中会替换为下面的式子
+$$
+R_n(\hat{\beta}) = -\Sigma + \|\hat{\beta}\|_2^2 I + 2 \hat{\beta} \hat{\beta}^T,
+$$
+然后求解方程的稳定点：$$
+f(\beta)=-\beta^t\hat{\Sigma}\beta+\| \beta \|_2^4+\lambda\| \beta \|_1 \quad\ {\{\beta \in B: 
+\|\beta \|_1<T}\}
+      
+$$
+随后计算出
+$$
+R_n(\hat{\beta}) = -\Sigma + \|\hat{\beta}\|_2^2 I + 2 \hat{\beta} \hat{\beta}^T,
+$$
+这个式子随后会进入到迭代中当作矩阵A,计算约束，下面的是迭代的结果
+$$
+\hat{b} := \hat{\beta} - \Theta^T \left( \|\hat{\beta}\|_2^2 \hat{\beta} - \Sigma \hat{\beta} \right),
+$$
+这个是de-biased estimator和下面这个式子
+$$
+\hat{\Lambda} := \|\hat{\beta}\|_2^2 - 2 \hat{\beta}^T \Theta^T \left( \|\hat{\beta}\|_2^2 \hat{\beta} - \Sigma \hat{\beta} \right).
+$$
+这个是eigenvalue estimator
+
+初始变量：论文中对于矩阵A的初始设定是任意矩阵，但是对于$$\beta$$的初始值设定是由严格要求的。因为在高维情况下，对于损失函数$$R(\beta)$$是非凸的函数，所以需要$$\beta$$初始值的选取离$$\beta_0$$的真实值比较近，论文中是选择合适的$$\eta$$使得$$\beta \in R^P:\quad\|\beta-\beta_0\|_2\leq\eta$$.
+---
