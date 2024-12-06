@@ -1,5 +1,6 @@
 #include <RcppArmadillo.h>
 // [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::plugins(cpp11)]]
 using namespace Rcpp;
 
 // Soft-thresholding function
@@ -107,3 +108,9 @@ List alternating_debiased_sparse_pca(const arma::mat& X, arma::vec beta_hat, dou
     Named("Theta") = Theta
   );
 }
+//' @import microbenchmark
+//' @import Rcpp
+//' @import RcppArmadillo
+//' @importFrom stats rnorm rgamma
+//' @useDynLib StatComp
+
