@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="SA24204138" />
+
+<meta name="date" content="2024-12-09" />
+
+<title>Introduction to SA24204138</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introduction to SA24204138</h1>
+<h4 class="author">SA24204138</h4>
+<h4 class="date">2024-12-09</h4>
+
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>本r包的方法来自于论文De-Biased Sparse PCA: Inference for
+Eigenstructure of Large Covariance
+Matrices。文章的主要工作是在稀疏条件下对于特征结构的的渐近正态估计。对于回归问题</p>
+<p><span class="math display">\[
+\min_{\beta} \| Y - X\beta \|^2 + \lambda \|\beta\|_1
+\]</span> 参数<span class="math display">\[\beta\]</span>在l2范数下以</p>
+<p><span class="math display">\[
+\| \beta - \beta^* \|_2 = O\left( \sqrt{\frac{\log p}{n}} \right)
+\]</span>
+的速度收敛。该估计器存在渐近偏差，因此论文研究了样本的特征结构，从而识别了偏差项，得到去偏估计器。本r包正是基于其所证明的去偏估计以及论文中的伪代码所编写的r包。论文把算法分为两个部分，一个部分是根据误差的黑塞矩阵，使用nodewise
+lasso的方法来估计约束条件</p>
+<p><span class="math display">\[（\lambda,T）：\]</span> <span class="math display">\[
+f(\gamma_j) := \Gamma_j^T A \Gamma_j + \lambda_j
+\|\gamma_j\|_1\quad\{\gamma_j \in \mathbb{R}^{p-1} : \|\gamma_j\|_1 \leq
+T_j \}.
+\]</span> 矩阵A初始是任意矩阵，而在迭代过程中会替换为下面的式子</p>
+<p><span class="math display">\[
+R_n(\hat{\beta}) = -\Sigma + \|\hat{\beta}\|_2^2 I + 2 \hat{\beta}
+\hat{\beta}^T,
+\]</span> 然后求解方程的稳定点：</p>
+<p>$$ f()=-1/2^t+| |_2^4+| |_1  {{B: ||_1&lt;T}}</p>
+<p>$$ 这个公式其实来源于这个式子，加上一个惩罚项</p>
+<p><span class="math display">\[R(\beta) := \frac{1}{4} \|\Sigma_0 -
+\beta \beta^T\|_F^2
+= \frac{1}{4} \operatorname{tr}(\Sigma_0^2) - \frac{1}{2} \beta^T
+\Sigma_0 \beta + \frac{1}{4} \|\beta\|_2^4.\]</span></p>
+<p>随后计算出</p>
+<p><span class="math display">\[
+R_n(\hat{\beta}) = -\Sigma + \|\hat{\beta}\|_2^2 I + 2 \hat{\beta}
+\hat{\beta}^T,
+\]</span>
+这个式子随后会进入到迭代中当作矩阵A,计算约束，下面的是迭代的结果</p>
+<p><span class="math display">\[
+\hat{b} := \hat{\beta} - \Theta^T \left( \|\hat{\beta}\|_2^2 \hat{\beta}
+- \Sigma \hat{\beta} \right),
+\]</span> 这个是de-biased estimator和下面这个式子</p>
+<p><span class="math display">\[
+\hat{\Lambda} := \|\hat{\beta}\|_2^2 - 2 \hat{\beta}^T \Theta^T \left(
+\|\hat{\beta}\|_2^2 \hat{\beta} - \Sigma \hat{\beta} \right).
+\]</span> 这个是eigenvalue estimator</p>
+<p>初始变量：论文中对于矩阵A的初始设定是任意矩阵，但是对于<span class="math display">\[\beta\]</span>的初始值设定是由严格要求的。因为在高维情况下，对于损失函数<span class="math display">\[R(\beta)\]</span>是非凸的函数，所以需要<span class="math display">\[\beta\]</span>初始值的选取离<span class="math display">\[\beta_0\]</span>的真实值比较近，论文中是选择合适的<span class="math display">\[\eta\]</span>使得<span class="math display">\[\beta \in
+R^P:\quad\|\beta-\beta_0\|_2\leq\eta\]</span>.</p>
+<p>这个包的输入值为 X, #样本矩阵 beta_hat, #beta的初始值 lambda,
+#lambda的初始值 T,#T的初始值 max_iter #最大迭代次数 tol = #收敛阈值</p>
+<pre><code>#include &lt;RcppArmadillo.h&gt;
+// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::plugins(cpp11)]]
+using namespace Rcpp;
+//&#39; @useDynLib SA24204138
+
+// Soft-thresholding function
+double soft_threshold(double x, double lambda) {
+  if (x &gt; lambda) return x - lambda;
+  if (x &lt; -lambda) return x + lambda;
+  return 0.0;
+}
+
+// Optimize principal component vector
+arma::vec optimize_beta(const arma::mat&amp; Sigma_hat, arma::vec beta, double lambda, double T, int max_iter = 100, double tol = 1e-6) {
+  int p = Sigma_hat.n_cols;
+  arma::vec beta_old = beta;
+  
+  for (int iter = 0; iter &lt; max_iter; ++iter) {
+    for (int j = 0; j &lt; p; ++j) {
+      double partial_residual = -arma::dot(Sigma_hat.row(j).t(), beta) + Sigma_hat(j, j) * beta(j);
+      beta(j) = soft_threshold(partial_residual, lambda) / Sigma_hat(j, j);
+    }
+    // Enforce L1 norm constraint
+    if (arma::norm(beta, 1) &gt; T) {
+      beta *= T / arma::norm(beta, 1);
+    }
+    // Convergence check
+    if (arma::norm(beta - beta_old, 2) &lt; tol) break;
+    beta_old = beta;
+  }
+  return beta;
+}
+
+// Nodewise Lasso function
+arma::mat nodewise_lasso(const arma::mat&amp; A, double lambda, double T) {
+  int p = A.n_cols;
+  arma::mat Theta = arma::zeros&lt;arma::mat&gt;(p, p);
+  
+  for (int j = 0; j &lt; p; ++j) {
+    arma::vec gamma = arma::zeros&lt;arma::vec&gt;(p - 1);
+    arma::vec Aj = A.col(j);
+    arma::mat A_minus_j = A;
+    A_minus_j.shed_col(j);
+    
+    double error_tolerance = 1e-6;
+    arma::vec gamma_old = gamma;
+    double error = 1.0;
+    int max_iter = 1000;
+    int iter = 0;
+    
+    while (error &gt; error_tolerance &amp;&amp; iter &lt; max_iter) {
+      for (int k = 0; k &lt; gamma.n_elem; ++k) {
+        double partial_residual = Aj(k) - arma::dot(A_minus_j.row(k).t(), gamma);
+        gamma(k) = soft_threshold(partial_residual, lambda) / (A_minus_j(k, k) + 1e-10);
+      }
+      error = arma::norm(gamma - gamma_old, 2);
+      gamma_old = gamma;
+      iter++;
+    }
+    Theta.col(j) = -arma::join_cols(gamma.head(j), arma::vec(1, arma::fill::zeros), gamma.tail(p - j - 1));
+  }
+  return Theta;
+}
+
+// Debiased sparse PCA function
+List debiased_sparse_pca(const arma::mat&amp; Sigma_hat, const arma::vec&amp; beta_hat, double lambda, double T, const arma::mat&amp; Theta) {
+  double beta_hat_norm_sq = arma::dot(beta_hat, beta_hat);
+  arma::vec bias_correction = Theta * (beta_hat_norm_sq * beta_hat - Sigma_hat * beta_hat);
+  arma::vec beta_debiased = beta_hat - bias_correction;
+  
+  double eigenvalue = arma::dot(beta_hat, Sigma_hat * beta_hat);
+  
+  return List::create(
+    Named(&quot;beta_debiased&quot;) = beta_debiased,
+    Named(&quot;eigenvalue&quot;) = eigenvalue
+  );
+}
+
+// Alternating optimization main function
+// [[Rcpp::export]]
+List alternating_debiased_sparse_pca(const arma::mat&amp; X, arma::vec beta_hat, double lambda, double T, int max_iter = 100, double tol = 1e-6) {
+  if (X.n_rows &lt; X.n_cols) {
+    stop(&quot;Input matrix X should have more rows than columns.&quot;);
+  }
+  
+  int p = X.n_cols;
+  arma::mat Sigma_hat = X.t() * X / X.n_rows;
+  beta_hat = optimize_beta(Sigma_hat, beta_hat, lambda, T);
+  arma::mat Theta;
+  arma::vec beta_debiased;
+  double eigenvalue;
+  
+  for (int iter = 0; iter &lt; max_iter; ++iter) {
+    arma::mat Rn_beta = -Sigma_hat + arma::eye&lt;arma::mat&gt;(p, p) * arma::dot(beta_hat, beta_hat) + 2 * beta_hat * beta_hat.t();
+    Theta = nodewise_lasso(Rn_beta, lambda, T);
+    
+    List pca_result = debiased_sparse_pca(Sigma_hat, beta_hat, lambda, T, Theta);
+    beta_debiased = as&lt;arma::vec&gt;(pca_result[&quot;beta_debiased&quot;]);
+    eigenvalue = as&lt;double&gt;(pca_result[&quot;eigenvalue&quot;]);
+    
+    if (arma::norm(beta_debiased - beta_hat, 2) &lt; tol) break;
+    beta_hat = beta_debiased;
+  }
+  
+  return List::create(
+    Named(&quot;beta_debiased&quot;) = beta_debiased,
+    Named(&quot;eigenvalue&quot;) = eigenvalue,
+    Named(&quot;Theta&quot;) = Theta
+  );
+}
+
+#include &lt;RcppArmadillo.h&gt;
+// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::plugins(cpp11)]]
+using namespace Rcpp;
+//&#39; @useDynLib SA24204138
+
+// Soft-thresholding function
+double soft_threshold(double x, double lambda) {
+  if (x &gt; lambda) return x - lambda;
+  if (x &lt; -lambda) return x + lambda;
+  return 0.0;
+}
+
+// Optimize principal component vector
+arma::vec optimize_beta(const arma::mat&amp; Sigma_hat, arma::vec beta, double lambda, double T, int max_iter = 100, double tol = 1e-6) {
+  int p = Sigma_hat.n_cols;
+  arma::vec beta_old = beta;
+  
+  for (int iter = 0; iter &lt; max_iter; ++iter) {
+    for (int j = 0; j &lt; p; ++j) {
+      double partial_residual = -arma::dot(Sigma_hat.row(j).t(), beta) + Sigma_hat(j, j) * beta(j);
+      beta(j) = soft_threshold(partial_residual, lambda) / Sigma_hat(j, j);
+    }
+    // Enforce L1 norm constraint
+    if (arma::norm(beta, 1) &gt; T) {
+      beta *= T / arma::norm(beta, 1);
+    }
+    // Convergence check
+    if (arma::norm(beta - beta_old, 2) &lt; tol) break;
+    beta_old = beta;
+  }
+  return beta;
+}
+
+// Nodewise Lasso function
+arma::mat nodewise_lasso(const arma::mat&amp; A, double lambda, double T) {
+  int p = A.n_cols;
+  arma::mat Theta = arma::zeros&lt;arma::mat&gt;(p, p);
+  
+  for (int j = 0; j &lt; p; ++j) {
+    arma::vec gamma = arma::zeros&lt;arma::vec&gt;(p - 1);
+    arma::vec Aj = A.col(j);
+    arma::mat A_minus_j = A;
+    A_minus_j.shed_col(j);
+    
+    double error_tolerance = 1e-6;
+    arma::vec gamma_old = gamma;
+    double error = 1.0;
+    int max_iter = 1000;
+    int iter = 0;
+    
+    while (error &gt; error_tolerance &amp;&amp; iter &lt; max_iter) {
+      for (int k = 0; k &lt; gamma.n_elem; ++k) {
+        double partial_residual = Aj(k) - arma::dot(A_minus_j.row(k).t(), gamma);
+        gamma(k) = soft_threshold(partial_residual, lambda) / (A_minus_j(k, k) + 1e-10);
+      }
+      error = arma::norm(gamma - gamma_old, 2);
+      gamma_old = gamma;
+      iter++;
+    }
+    Theta.col(j) = -arma::join_cols(gamma.head(j), arma::vec(1, arma::fill::zeros), gamma.tail(p - j - 1));
+  }
+  return Theta;
+}
+
+// Debiased sparse PCA function
+List debiased_sparse_pca(const arma::mat&amp; Sigma_hat, const arma::vec&amp; beta_hat, double lambda, double T, const arma::mat&amp; Theta) {
+  double beta_hat_norm_sq = arma::dot(beta_hat, beta_hat);
+  arma::vec bias_correction = Theta * (beta_hat_norm_sq * beta_hat - Sigma_hat * beta_hat);
+  arma::vec beta_debiased = beta_hat - bias_correction;
+  
+  double eigenvalue = arma::dot(beta_hat, Sigma_hat * beta_hat);
+  
+  return List::create(
+    Named(&quot;beta_debiased&quot;) = beta_debiased,
+    Named(&quot;eigenvalue&quot;) = eigenvalue
+  );
+}
+
+// Alternating optimization main function
+// [[Rcpp::export]]
+List alternating_debiased_sparse_pca(const arma::mat&amp; X, arma::vec beta_hat, double lambda, double T, int max_iter = 100, double tol = 1e-6) {
+  if (X.n_rows &lt; X.n_cols) {
+    stop(&quot;Input matrix X should have more rows than columns.&quot;);
+  }
+  
+  int p = X.n_cols;
+  arma::mat Sigma_hat = X.t() * X / X.n_rows;
+  beta_hat = optimize_beta(Sigma_hat, beta_hat, lambda, T);
+  arma::mat Theta;
+  arma::vec beta_debiased;
+  double eigenvalue;
+  
+  for (int iter = 0; iter &lt; max_iter; ++iter) {
+    arma::mat Rn_beta = -Sigma_hat + arma::eye&lt;arma::mat&gt;(p, p) * arma::dot(beta_hat, beta_hat) + 2 * beta_hat * beta_hat.t();
+    Theta = nodewise_lasso(Rn_beta, lambda, T);
+    
+    List pca_result = debiased_sparse_pca(Sigma_hat, beta_hat, lambda, T, Theta);
+    beta_debiased = as&lt;arma::vec&gt;(pca_result[&quot;beta_debiased&quot;]);
+    eigenvalue = as&lt;double&gt;(pca_result[&quot;eigenvalue&quot;]);
+    
+    if (arma::norm(beta_debiased - beta_hat, 2) &lt; tol) break;
+    beta_hat = beta_debiased;
+  }
+  
+  return List::create(
+    Named(&quot;beta_debiased&quot;) = beta_debiased,
+    Named(&quot;eigenvalue&quot;) = eigenvalue,
+    Named(&quot;Theta&quot;) = Theta
+  );
+}
+
+
+#include &lt;RcppArmadillo.h&gt;
+// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::plugins(cpp11)]]
+using namespace Rcpp;
+//&#39; @useDynLib SA24204138
+
+// Soft-thresholding function
+double soft_threshold(double x, double lambda) {
+  if (x &gt; lambda) return x - lambda;
+  if (x &lt; -lambda) return x + lambda;
+  return 0.0;
+}
+
+// Optimize principal component vector
+arma::vec optimize_beta(const arma::mat&amp; Sigma_hat, arma::vec beta, double lambda, double T, int max_iter = 100, double tol = 1e-6) {
+  int p = Sigma_hat.n_cols;
+  arma::vec beta_old = beta;
+  
+  for (int iter = 0; iter &lt; max_iter; ++iter) {
+    for (int j = 0; j &lt; p; ++j) {
+      double partial_residual = -arma::dot(Sigma_hat.row(j).t(), beta) + Sigma_hat(j, j) * beta(j);
+      beta(j) = soft_threshold(partial_residual, lambda) / Sigma_hat(j, j);
+    }
+    // Enforce L1 norm constraint
+    if (arma::norm(beta, 1) &gt; T) {
+      beta *= T / arma::norm(beta, 1);
+    }
+    // Convergence check
+    if (arma::norm(beta - beta_old, 2) &lt; tol) break;
+    beta_old = beta;
+  }
+  return beta;
+}
+
+// Nodewise Lasso function
+arma::mat nodewise_lasso(const arma::mat&amp; A, double lambda, double T) {
+  int p = A.n_cols;
+  arma::mat Theta = arma::zeros&lt;arma::mat&gt;(p, p);
+  
+  for (int j = 0; j &lt; p; ++j) {
+    arma::vec gamma = arma::zeros&lt;arma::vec&gt;(p - 1);
+    arma::vec Aj = A.col(j);
+    arma::mat A_minus_j = A;
+    A_minus_j.shed_col(j);
+    
+    double error_tolerance = 1e-6;
+    arma::vec gamma_old = gamma;
+    double error = 1.0;
+    int max_iter = 1000;
+    int iter = 0;
+    
+    while (error &gt; error_tolerance &amp;&amp; iter &lt; max_iter) {
+      for (int k = 0; k &lt; gamma.n_elem; ++k) {
+        double partial_residual = Aj(k) - arma::dot(A_minus_j.row(k).t(), gamma);
+        gamma(k) = soft_threshold(partial_residual, lambda) / (A_minus_j(k, k) + 1e-10);
+      }
+      error = arma::norm(gamma - gamma_old, 2);
+      gamma_old = gamma;
+      iter++;
+    }
+    Theta.col(j) = -arma::join_cols(gamma.head(j), arma::vec(1, arma::fill::zeros), gamma.tail(p - j - 1));
+  }
+  return Theta;
+}
+
+// Debiased sparse PCA function
+List debiased_sparse_pca(const arma::mat&amp; Sigma_hat, const arma::vec&amp; beta_hat, double lambda, double T, const arma::mat&amp; Theta) {
+  double beta_hat_norm_sq = arma::dot(beta_hat, beta_hat);
+  arma::vec bias_correction = Theta * (beta_hat_norm_sq * beta_hat - Sigma_hat * beta_hat);
+  arma::vec beta_debiased = beta_hat - bias_correction;
+  
+  double eigenvalue = arma::dot(beta_hat, Sigma_hat * beta_hat);
+  
+  return List::create(
+    Named(&quot;beta_debiased&quot;) = beta_debiased,
+    Named(&quot;eigenvalue&quot;) = eigenvalue
+  );
+}
+
+// Alternating optimization main function
+// [[Rcpp::export]]
+List alternating_debiased_sparse_pca(const arma::mat&amp; X, arma::vec beta_hat, double lambda, double T, int max_iter = 100, double tol = 1e-6) {
+  if (X.n_rows &lt; X.n_cols) {
+    stop(&quot;Input matrix X should have more rows than columns.&quot;);
+  }
+  
+  int p = X.n_cols;
+  arma::mat Sigma_hat = X.t() * X / X.n_rows;
+  beta_hat = optimize_beta(Sigma_hat, beta_hat, lambda, T);
+  arma::mat Theta;
+  arma::vec beta_debiased;
+  double eigenvalue;
+  
+  for (int iter = 0; iter &lt; max_iter; ++iter) {
+    arma::mat Rn_beta = -Sigma_hat + arma::eye&lt;arma::mat&gt;(p, p) * arma::dot(beta_hat, beta_hat) + 2 * beta_hat * beta_hat.t();
+    Theta = nodewise_lasso(Rn_beta, lambda, T);
+    
+    List pca_result = debiased_sparse_pca(Sigma_hat, beta_hat, lambda, T, Theta);
+    beta_debiased = as&lt;arma::vec&gt;(pca_result[&quot;beta_debiased&quot;]);
+    eigenvalue = as&lt;double&gt;(pca_result[&quot;eigenvalue&quot;]);
+    
+    if (arma::norm(beta_debiased - beta_hat, 2) &lt; tol) break;
+    beta_hat = beta_debiased;
+  }
+  
+  return List::create(
+    Named(&quot;beta_debiased&quot;) = beta_debiased,
+    Named(&quot;eigenvalue&quot;) = eigenvalue,
+    Named(&quot;Theta&quot;) = Theta
+  );
+}
+
+#include &lt;RcppArmadillo.h&gt;
+// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::plugins(cpp11)]]
+using namespace Rcpp;
+
+// Soft-thresholding function
+double soft_threshold(double x, double lambda) {
+  if (x &gt; lambda) return x - lambda;
+  if (x &lt; -lambda) return x + lambda;
+  return 0.0;
+}
+
+// Optimize principal component vector
+arma::vec optimize_beta(const arma::mat&amp; Sigma_hat, arma::vec beta, double lambda, double T, int max_iter = 100, double tol = 1e-6) {
+  int p = Sigma_hat.n_cols;
+  arma::vec beta_old = beta;
+  
+  for (int iter = 0; iter &lt; max_iter; ++iter) {
+    for (int j = 0; j &lt; p; ++j) {
+      double partial_residual = -arma::dot(Sigma_hat.row(j).t(), beta) + Sigma_hat(j, j) * beta(j);
+      beta(j) = soft_threshold(partial_residual, lambda) / Sigma_hat(j, j);
+    }
+    // Enforce L1 norm constraint
+    if (arma::norm(beta, 1) &gt; T) {
+      beta *= T / arma::norm(beta, 1);
+    }
+    // Convergence check
+    if (arma::norm(beta - beta_old, 2) &lt; tol) break;
+    beta_old = beta;
+  }
+  return beta;
+}
+
+// Nodewise Lasso function
+arma::mat nodewise_lasso(const arma::mat&amp; A, double lambda, double T) {
+  int p = A.n_cols;
+  arma::mat Theta = arma::zeros&lt;arma::mat&gt;(p, p);
+  
+  for (int j = 0; j &lt; p; ++j) {
+    arma::vec gamma = arma::zeros&lt;arma::vec&gt;(p - 1);
+    arma::vec Aj = A.col(j);
+    arma::mat A_minus_j = A;
+    A_minus_j.shed_col(j);
+    
+    double error_tolerance = 1e-6;
+    arma::vec gamma_old = gamma;
+    double error = 1.0;
+    int max_iter = 1000;
+    int iter = 0;
+    
+    while (error &gt; error_tolerance &amp;&amp; iter &lt; max_iter) {
+      for (int k = 0; k &lt; gamma.n_elem; ++k) {
+        double partial_residual = Aj(k) - arma::dot(A_minus_j.row(k).t(), gamma);
+        gamma(k) = soft_threshold(partial_residual, lambda) / (A_minus_j(k, k) + 1e-10);
+      }
+      error = arma::norm(gamma - gamma_old, 2);
+      gamma_old = gamma;
+      iter++;
+    }
+    Theta.col(j) = -arma::join_cols(gamma.head(j), arma::vec(1, arma::fill::zeros), gamma.tail(p - j - 1));
+  }
+  return Theta;
+}
+
+// Debiased sparse PCA function
+List debiased_sparse_pca(const arma::mat&amp; Sigma_hat, const arma::vec&amp; beta_hat, double lambda, double T, const arma::mat&amp; Theta) {
+  double beta_hat_norm_sq = arma::dot(beta_hat, beta_hat);
+  arma::vec bias_correction = Theta * (beta_hat_norm_sq * beta_hat - Sigma_hat * beta_hat);
+  arma::vec beta_debiased = beta_hat - bias_correction;
+  
+  double eigenvalue = arma::dot(beta_hat, Sigma_hat * beta_hat);
+  
+  return List::create(
+    Named(&quot;beta_debiased&quot;) = beta_debiased,
+    Named(&quot;eigenvalue&quot;) = eigenvalue
+  );
+}
+
+// Alternating optimization main function
+// [[Rcpp::export]]
+List alternating_debiased_sparse_pca(const arma::mat&amp; X, arma::vec beta_hat, double lambda, double T, int max_iter = 100, double tol = 1e-6) {
+  if (X.n_rows &lt; X.n_cols) {
+    stop(&quot;Input matrix X should have more rows than columns.&quot;);
+  }
+  
+  int p = X.n_cols;
+  arma::mat Sigma_hat = X.t() * X / X.n_rows;
+  beta_hat = optimize_beta(Sigma_hat, beta_hat, lambda, T);
+  arma::mat Theta;
+  arma::vec beta_debiased;
+  double eigenvalue;
+  
+  for (int iter = 0; iter &lt; max_iter; ++iter) {
+    arma::mat Rn_beta = -Sigma_hat + arma::eye&lt;arma::mat&gt;(p, p) * arma::dot(beta_hat, beta_hat) + 2 * beta_hat * beta_hat.t();
+    Theta = nodewise_lasso(Rn_beta, lambda, T);
+    
+    List pca_result = debiased_sparse_pca(Sigma_hat, beta_hat, lambda, T, Theta);
+    beta_debiased = as&lt;arma::vec&gt;(pca_result[&quot;beta_debiased&quot;]);
+    eigenvalue = as&lt;double&gt;(pca_result[&quot;eigenvalue&quot;]);
+    
+    if (arma::norm(beta_debiased - beta_hat, 2) &lt; tol) break;
+    beta_hat = beta_debiased;
+  }
+  
+  return List::create(
+    Named(&quot;beta_debiased&quot;) = beta_debiased,
+    Named(&quot;eigenvalue&quot;) = eigenvalue,
+    Named(&quot;Theta&quot;) = Theta
+  );
+}
+
+#include &lt;RcppArmadillo.h&gt;
+// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::plugins(cpp11)]]
+using namespace Rcpp;
+
+// Soft-thresholding function
+double soft_threshold(double x, double lambda) {
+  if (x &gt; lambda) return x - lambda;
+  if (x &lt; -lambda) return x + lambda;
+  return 0.0;
+}
+
+// Optimize principal component vector
+arma::vec optimize_beta(const arma::mat&amp; Sigma_hat, arma::vec beta, double lambda, double T, int max_iter = 100, double tol = 1e-6) {
+  int p = Sigma_hat.n_cols;
+  arma::vec beta_old = beta;
+  
+  for (int iter = 0; iter &lt; max_iter; ++iter) {
+    for (int j = 0; j &lt; p; ++j) {
+      double partial_residual = -arma::dot(Sigma_hat.row(j).t(), beta) + Sigma_hat(j, j) * beta(j);
+      beta(j) = soft_threshold(partial_residual, lambda) / Sigma_hat(j, j);
+    }
+    // Enforce L1 norm constraint
+    if (arma::norm(beta, 1) &gt; T) {
+      beta *= T / arma::norm(beta, 1);
+    }
+    // Convergence check
+    if (arma::norm(beta - beta_old, 2) &lt; tol) break;
+    beta_old = beta;
+  }
+  return beta;
+}
+
+// Nodewise Lasso function
+arma::mat nodewise_lasso(const arma::mat&amp; A, double lambda, double T) {
+  int p = A.n_cols;
+  arma::mat Theta = arma::zeros&lt;arma::mat&gt;(p, p);
+  
+  for (int j = 0; j &lt; p; ++j) {
+    arma::vec gamma = arma::zeros&lt;arma::vec&gt;(p - 1);
+    arma::vec Aj = A.col(j);
+    arma::mat A_minus_j = A;
+    A_minus_j.shed_col(j);
+    
+    double error_tolerance = 1e-6;
+    arma::vec gamma_old = gamma;
+    double error = 1.0;
+    int max_iter = 1000;
+    int iter = 0;
+    
+    while (error &gt; error_tolerance &amp;&amp; iter &lt; max_iter) {
+      for (int k = 0; k &lt; gamma.n_elem; ++k) {
+        double partial_residual = Aj(k) - arma::dot(A_minus_j.row(k).t(), gamma);
+        gamma(k) = soft_threshold(partial_residual, lambda) / (A_minus_j(k, k) + 1e-10);
+      }
+      error = arma::norm(gamma - gamma_old, 2);
+      gamma_old = gamma;
+      iter++;
+    }
+    Theta.col(j) = -arma::join_cols(gamma.head(j), arma::vec(1, arma::fill::zeros), gamma.tail(p - j - 1));
+  }
+  return Theta;
+}
+
+// Debiased sparse PCA function
+List debiased_sparse_pca(const arma::mat&amp; Sigma_hat, const arma::vec&amp; beta_hat, double lambda, double T, const arma::mat&amp; Theta) {
+  double beta_hat_norm_sq = arma::dot(beta_hat, beta_hat);
+  arma::vec bias_correction = Theta * (beta_hat_norm_sq * beta_hat - Sigma_hat * beta_hat);
+  arma::vec beta_debiased = beta_hat - bias_correction;
+  
+  double eigenvalue = arma::dot(beta_hat, Sigma_hat * beta_hat);
+  
+  return List::create(
+    Named(&quot;beta_debiased&quot;) = beta_debiased,
+    Named(&quot;eigenvalue&quot;) = eigenvalue
+  );
+}
+
+// Alternating optimization main function
+// [[Rcpp::export]]
+List alternating_debiased_sparse_pca(const arma::mat&amp; X, arma::vec beta_hat, double lambda, double T, int max_iter = 100, double tol = 1e-6) {
+  if (X.n_rows &lt; X.n_cols) {
+    stop(&quot;Input matrix X should have more rows than columns.&quot;);
+  }
+  
+  int p = X.n_cols;
+  arma::mat Sigma_hat = X.t() * X / X.n_rows;
+  beta_hat = optimize_beta(Sigma_hat, beta_hat, lambda, T);
+  arma::mat Theta;
+  arma::vec beta_debiased;
+  double eigenvalue;
+  
+  for (int iter = 0; iter &lt; max_iter; ++iter) {
+    arma::mat Rn_beta = -Sigma_hat + arma::eye&lt;arma::mat&gt;(p, p) * arma::dot(beta_hat, beta_hat) + 2 * beta_hat * beta_hat.t();
+    Theta = nodewise_lasso(Rn_beta, lambda, T);
+    
+    List pca_result = debiased_sparse_pca(Sigma_hat, beta_hat, lambda, T, Theta);
+    beta_debiased = as&lt;arma::vec&gt;(pca_result[&quot;beta_debiased&quot;]);
+    eigenvalue = as&lt;double&gt;(pca_result[&quot;eigenvalue&quot;]);
+    
+    if (arma::norm(beta_debiased - beta_hat, 2) &lt; tol) break;
+    beta_hat = beta_debiased;
+  }
+  
+  return List::create(
+    Named(&quot;beta_debiased&quot;) = beta_debiased,
+    Named(&quot;eigenvalue&quot;) = eigenvalue,
+    Named(&quot;Theta&quot;) = Theta
+  );
+}</code></pre>
+<hr />
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
